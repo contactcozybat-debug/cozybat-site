@@ -20,12 +20,28 @@ window.__resources = {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cozybat — Ravalement, isolation et rénovation de façade</title>
 <link rel="preload" as="image" href="assets/ph-hero.jpg" fetchpriority="high">
-<link rel="preconnect" href="https://unpkg.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <script src="./image-slot.js"></script>
 <style>
+  /* Icones Lucide integrees a la page. Elles etaient chargees une par une
+     depuis unpkg.com : autant de connexions a un domaine tiers avant que
+     le moindre pictogramme s affiche. Declarees ici une seule fois, elles
+     sont referencees par var(--ico-...) partout ou elles servent. */
+  :root {
+    --ico-arrow-right: url("data:image/svg+xml,%3Csvg%20class%3D%22lucide%20lucide-arrow-right%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20%3E%20%3Cpath%20d%3D%22M5%2012h14%22%20%2F%3E%20%3Cpath%20d%3D%22m12%205%207%207-7%207%22%20%2F%3E%20%3C%2Fsvg%3E");
+    --ico-chevron-down: url("data:image/svg+xml,%3Csvg%20class%3D%22lucide%20lucide-chevron-down%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20%3E%20%3Cpath%20d%3D%22m6%209%206%206%206-6%22%20%2F%3E%20%3C%2Fsvg%3E");
+    --ico-chevron-left: url("data:image/svg+xml,%3Csvg%20class%3D%22lucide%20lucide-chevron-left%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20%3E%20%3Cpath%20d%3D%22m15%2018-6-6%206-6%22%20%2F%3E%20%3C%2Fsvg%3E");
+    --ico-chevron-right: url("data:image/svg+xml,%3Csvg%20class%3D%22lucide%20lucide-chevron-right%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20%3E%20%3Cpath%20d%3D%22m9%2018%206-6-6-6%22%20%2F%3E%20%3C%2Fsvg%3E");
+    --ico-circle-alert: url("data:image/svg+xml,%3Csvg%20class%3D%22lucide%20lucide-circle-alert%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20%3E%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%20%2F%3E%20%3Cline%20x1%3D%2212%22%20x2%3D%2212%22%20y1%3D%228%22%20y2%3D%2212%22%20%2F%3E%20%3Cline%20x1%3D%2212%22%20x2%3D%2212.01%22%20y1%3D%2216%22%20y2%3D%2216%22%20%2F%3E%20%3C%2Fsvg%3E");
+    --ico-circle-check: url("data:image/svg+xml,%3Csvg%20class%3D%22lucide%20lucide-circle-check%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20%3E%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%20%2F%3E%20%3Cpath%20d%3D%22m9%2012%202%202%204-4%22%20%2F%3E%20%3C%2Fsvg%3E");
+    --ico-file-check: url("data:image/svg+xml,%3Csvg%20class%3D%22lucide%20lucide-file-check%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20%3E%20%3Cpath%20d%3D%22M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z%22%20%2F%3E%20%3Cpath%20d%3D%22M14%202v4a2%202%200%200%200%202%202h4%22%20%2F%3E%20%3Cpath%20d%3D%22m9%2015%202%202%204-4%22%20%2F%3E%20%3C%2Fsvg%3E");
+    --ico-mail: url("data:image/svg+xml,%3Csvg%20class%3D%22lucide%20lucide-mail%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20%3E%20%3Cpath%20d%3D%22m22%207-8.991%205.727a2%202%200%200%201-2.009%200L2%207%22%20%2F%3E%20%3Crect%20x%3D%222%22%20y%3D%224%22%20width%3D%2220%22%20height%3D%2216%22%20rx%3D%222%22%20%2F%3E%20%3C%2Fsvg%3E");
+    --ico-phone: url("data:image/svg+xml,%3Csvg%20class%3D%22lucide%20lucide-phone%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20%3E%20%3Cpath%20d%3D%22M13.832%2016.568a1%201%200%200%200%201.213-.303l.355-.465A2%202%200%200%201%2017%2015h3a2%202%200%200%201%202%202v3a2%202%200%200%201-2%202A18%2018%200%200%201%202%204a2%202%200%200%201%202-2h3a2%202%200%200%201%202%202v3a2%202%200%200%201-.8%201.6l-.468.351a1%201%200%200%200-.292%201.233%2014%2014%200%200%200%206.392%206.384%22%20%2F%3E%20%3C%2Fsvg%3E");
+    --ico-shield-check: url("data:image/svg+xml,%3Csvg%20class%3D%22lucide%20lucide-shield-check%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20%3E%20%3Cpath%20d%3D%22M20%2013c0%205-3.5%207.5-7.66%208.95a1%201%200%200%201-.67-.01C7.5%2020.5%204%2018%204%2013V6a1%201%200%200%201%201-1c2%200%204.5-1.2%206.24-2.72a1.17%201.17%200%200%201%201.52%200C14.51%203.81%2017%205%2019%205a1%201%200%200%201%201%201z%22%20%2F%3E%20%3Cpath%20d%3D%22m9%2012%202%202%204-4%22%20%2F%3E%20%3C%2Fsvg%3E");
+    --ico-triangle-alert: url("data:image/svg+xml,%3Csvg%20class%3D%22lucide%20lucide-triangle-alert%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20%3E%20%3Cpath%20d%3D%22m21.73%2018-8-14a2%202%200%200%200-3.48%200l-8%2014A2%202%200%200%200%204%2021h16a2%202%200%200%200%201.73-3%22%20%2F%3E%20%3Cpath%20d%3D%22M12%209v4%22%20%2F%3E%20%3Cpath%20d%3D%22M12%2017h.01%22%20%2F%3E%20%3C%2Fsvg%3E");
+  }
   html { scroll-behavior: smooth; }
   body { margin: 0; background: #ffffff; color: #3e4e5c; font-family: "Archivo","Helvetica Neue",Arial,sans-serif; -webkit-font-smoothing: antialiased; }
   * { box-sizing: border-box; }
@@ -79,7 +95,7 @@ window.__resources = {
         <a href="#devis" data-navlink="1" style="font-size:14px;font-weight:500;color:#3e4e5c" style-hover="color:#232d36">Contact</a>
       </nav>
       <div style="display:flex;align-items:center;gap:12px">
-        <a data-headcall="1" href="{{ telHref }}" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 50px; padding: 0 18px; line-height: 1; border-radius: 9999px; border: 1px solid #c2cbd3; background: #ffffff; font-family: 'IBM Plex Mono',monospace; font-size: 14px; font-weight: 500; color: #232d36; transition: border-color .14s cubic-bezier(.2,0,.2,1),background .14s cubic-bezier(.2,0,.2,1); width: 182px" style-hover="border-color:#3e4e5c;background:#f7f8f9;color:#232d36"><span aria-hidden="true" style="display:inline-block;width:18px;height:18px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/phone.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/phone.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span><span>{{ telDisplay }}</span></a>
+        <a data-headcall="1" href="{{ telHref }}" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 50px; padding: 0 18px; line-height: 1; border-radius: 9999px; border: 1px solid #c2cbd3; background: #ffffff; font-family: 'IBM Plex Mono',monospace; font-size: 14px; font-weight: 500; color: #232d36; transition: border-color .14s cubic-bezier(.2,0,.2,1),background .14s cubic-bezier(.2,0,.2,1); width: 182px" style-hover="border-color:#3e4e5c;background:#f7f8f9;color:#232d36"><span aria-hidden="true" style="display:inline-block;width:18px;height:18px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-phone);mask-image:var(--ico-phone);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span><span>{{ telDisplay }}</span></a>
         <a href="#devis" style="display:inline-flex;align-items:center;height:46px;padding:0 22px;border-radius:9999px;background:#e9ac2d;color:#232d36;font-size:15px;font-weight:600;box-shadow:0 6px 18px rgba(200,138,18,.28);transition:background .18s ease,transform .18s ease" style-hover="background:#f0be5c;transform:translateY(-1px);color:#232d36">Demander un devis</a>
         <button data-burger="1" onClick="{{ toggleMenu }}" aria-label="Menu" style="display:none;align-items:center;justify-content:center;width:46px;height:46px;border-radius:9999px;border:1px solid #c2cbd3;background:#ffffff;cursor:pointer">
           <span style="display:block;width:18px;height:10px;border-top:2px solid #232d36;border-bottom:2px solid #232d36"></span>
@@ -181,7 +197,7 @@ window.__resources = {
               <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:-.1px;color:#c98a12">{{ s.num }}</div>
               <h3 style="margin:12px 0 0;font-size:21px;line-height:1.3;letter-spacing:-.2px;font-weight:600;color:#232d36">{{ s.title }}</h3>
               <p style="margin:12px 0 0;font-size:15px;line-height:1.6;color:#6e8091;flex:1;text-wrap:pretty">{{ s.desc }}</p>
-              <a href="#devis" style="margin-top:22px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#232d36" style-hover="color:#a86f0c">Demander un devis <span data-arrow="1" style="display:inline-flex"><span aria-hidden="true" style="display:inline-block;width:16px;height:16px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/arrow-right.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/arrow-right.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span></a>
+              <a href="#devis" style="margin-top:22px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#232d36" style-hover="color:#a86f0c">Demander un devis <span data-arrow="1" style="display:inline-flex"><span aria-hidden="true" style="display:inline-block;width:16px;height:16px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-arrow-right);mask-image:var(--ico-arrow-right);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span></a>
             </div>
           </article>
         </sc-for>
@@ -255,7 +271,7 @@ window.__resources = {
               <image-slot id="cz-ba-1-after" shape="rect" placeholder="Après — façade ravalée" src="assets/ph-ba1-apres.jpg"></image-slot>
             </div>
             <div style="position:absolute;top:0;bottom:0;width:2px;background:#ffffff;pointer-events:none;left:{{ ba0Left }}">
-              <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:9999px;background:#ffffff;box-shadow:0 4px 14px rgba(35,45,54,.35);display:flex;align-items:center;justify-content:center;gap:1px;color:#232d36"><span aria-hidden="true" style="display:inline-block;width:15px;height:15px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/chevron-left.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/chevron-left.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span><span aria-hidden="true" style="display:inline-block;width:15px;height:15px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/chevron-right.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/chevron-right.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></div>
+              <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:9999px;background:#ffffff;box-shadow:0 4px 14px rgba(35,45,54,.35);display:flex;align-items:center;justify-content:center;gap:1px;color:#232d36"><span aria-hidden="true" style="display:inline-block;width:15px;height:15px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-chevron-left);mask-image:var(--ico-chevron-left);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span><span aria-hidden="true" style="display:inline-block;width:15px;height:15px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-chevron-right);mask-image:var(--ico-chevron-right);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></div>
             </div>
             <div style="position:absolute;top:16px;left:16px;pointer-events:none;padding:6px 12px;border-radius:9999px;background:rgba(233,172,45,.92);color:#232d36;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase">Après</div>
             <div style="position:absolute;top:16px;right:16px;pointer-events:none;padding:6px 12px;border-radius:9999px;background:rgba(35,45,54,.7);color:#ffffff;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase">Avant</div>
@@ -271,7 +287,7 @@ window.__resources = {
               <image-slot id="cz-ba-2-after" shape="rect" placeholder="Après — isolation et enduit de finition" src="assets/ph-ba2-apres.jpg"></image-slot>
             </div>
             <div style="position:absolute;top:0;bottom:0;width:2px;background:#ffffff;pointer-events:none;left:{{ ba1Left }}">
-              <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:9999px;background:#ffffff;box-shadow:0 4px 14px rgba(35,45,54,.35);display:flex;align-items:center;justify-content:center;gap:1px;color:#232d36"><span aria-hidden="true" style="display:inline-block;width:15px;height:15px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/chevron-left.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/chevron-left.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span><span aria-hidden="true" style="display:inline-block;width:15px;height:15px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/chevron-right.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/chevron-right.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></div>
+              <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:9999px;background:#ffffff;box-shadow:0 4px 14px rgba(35,45,54,.35);display:flex;align-items:center;justify-content:center;gap:1px;color:#232d36"><span aria-hidden="true" style="display:inline-block;width:15px;height:15px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-chevron-left);mask-image:var(--ico-chevron-left);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span><span aria-hidden="true" style="display:inline-block;width:15px;height:15px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-chevron-right);mask-image:var(--ico-chevron-right);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></div>
             </div>
             <div style="position:absolute;top:16px;left:16px;pointer-events:none;padding:6px 12px;border-radius:9999px;background:rgba(233,172,45,.92);color:#232d36;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase">Après</div>
             <div style="position:absolute;top:16px;right:16px;pointer-events:none;padding:6px 12px;border-radius:9999px;background:rgba(35,45,54,.7);color:#ffffff;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase">Avant</div>
@@ -332,7 +348,7 @@ window.__resources = {
         <h2 style="margin:20px 0 0;font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-1px;font-weight:700;color:#232d36;text-wrap:balance">Cozybat, le savoir-faire au service de vos façades.</h2>
         <p style="margin:24px 0 0;max-width:560px;font-size:17px;line-height:1.7;color:#546575;text-wrap:pretty">Nous croyons qu'une façade ne se résume pas à son apparence. Elle protège votre bâtiment, participe à son confort et contribue directement à son identité.</p>
         <p style="margin:18px 0 0;max-width:560px;font-size:17px;line-height:1.7;color:#546575;text-wrap:pretty">C'est pourquoi Cozybat accompagne ses clients dans leurs projets de rénovation extérieure avec une attention particulière portée à la qualité du travail et aux finitions.</p>
-        <a href="#devis" style="margin-top:32px;display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#232d36;border-bottom:1px solid #e9ac2d;padding-bottom:6px" style-hover="color:#a86f0c">Parler de votre projet <span data-arrow="1" style="display:inline-flex"><span aria-hidden="true" style="display:inline-block;width:16px;height:16px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/arrow-right.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/arrow-right.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span></a>
+        <a href="#devis" style="margin-top:32px;display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#232d36;border-bottom:1px solid #e9ac2d;padding-bottom:6px" style-hover="color:#a86f0c">Parler de votre projet <span data-arrow="1" style="display:inline-flex"><span aria-hidden="true" style="display:inline-block;width:16px;height:16px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-arrow-right);mask-image:var(--ico-arrow-right);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span></a>
       </div>
     </div>
   </section>
@@ -366,7 +382,7 @@ window.__resources = {
         <p style="margin:22px 0 0;max-width:560px;font-size:18px;line-height:1.6;color:rgba(255,255,255,.82);text-wrap:pretty">Vous avez un projet de façade, de peinture extérieure ou d'isolation ? Parlons-en.</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:36px">
           <a href="#devis" style="display:inline-flex;align-items:center;height:56px;padding:0 30px;border-radius:9999px;background:#e9ac2d;color:#232d36;font-size:15px;font-weight:600;box-shadow:0 6px 18px rgba(200,138,18,.28);transition:background .18s ease,transform .18s ease" style-hover="background:#f0be5c;transform:translateY(-2px);color:#232d36">Demander un devis</a>
-          <a href="{{ telHref }}" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 30px;border-radius:9999px;border:1px solid rgba(255,255,255,.45);color:#ffffff;font-size:15px;font-weight:600;transition:background .14s cubic-bezier(.2,0,.2,1),border-color .14s cubic-bezier(.2,0,.2,1)" style-hover="background:rgba(255,255,255,.14);border-color:#ffffff;color:#ffffff"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/phone.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/phone.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Nous appeler</a>
+          <a href="{{ telHref }}" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 30px;border-radius:9999px;border:1px solid rgba(255,255,255,.45);color:#ffffff;font-size:15px;font-weight:600;transition:background .14s cubic-bezier(.2,0,.2,1),border-color .14s cubic-bezier(.2,0,.2,1)" style-hover="background:rgba(255,255,255,.14);border-color:#ffffff;color:#ffffff"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-phone);mask-image:var(--ico-phone);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Nous appeler</a>
         </div>
       </div>
     </div>
@@ -383,10 +399,10 @@ window.__resources = {
 
       <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
         <div style="max-width:720px;background:#ffffff;border:1px solid #dfe4e9;border-radius:14px;padding:clamp(28px,4vw,44px);box-shadow:0 1px 2px rgba(35,45,54,.06)">
-          <div style="display:flex;align-items:center;gap:12px;color:#1d7a4c"><span aria-hidden="true" style="display:inline-block;width:26px;height:26px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-check.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-check.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span><span style="font-family:Archivo;font-size:22px;font-weight:700;color:#232d36">Votre demande est bien envoyée.</span></div>
+          <div style="display:flex;align-items:center;gap:12px;color:#1d7a4c"><span aria-hidden="true" style="display:inline-block;width:26px;height:26px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-circle-check);mask-image:var(--ico-circle-check);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span><span style="font-family:Archivo;font-size:22px;font-weight:700;color:#232d36">Votre demande est bien envoyée.</span></div>
           <p style="margin:18px 0 0;font-size:16px;line-height:1.62;color:#546575;max-width:46ch">Nous revenons vers vous sous 48 h ouvrées pour fixer la visite. Si votre projet est urgent, appelez-nous directement — c'est souvent plus rapide.</p>
           <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-            <a href="{{ telHref }}" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:6px;border:1px solid #c2cbd3;background:#ffffff;font-size:15px;font-weight:600;color:#232d36" style-hover="background:#f7f8f9;border-color:#3e4e5c;color:#232d36"><span aria-hidden="true" style="display:inline-block;width:18px;height:18px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/phone.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/phone.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Nous appeler</a>
+            <a href="{{ telHref }}" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:6px;border:1px solid #c2cbd3;background:#ffffff;font-size:15px;font-weight:600;color:#232d36" style-hover="background:#f7f8f9;border-color:#3e4e5c;color:#232d36"><span aria-hidden="true" style="display:inline-block;width:18px;height:18px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-phone);mask-image:var(--ico-phone);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Nous appeler</a>
             <button onClick="{{ resetForm }}" style="height:48px;padding:0 20px;border:none;background:none;font-family:Archivo;font-size:15px;font-weight:600;color:#546575;cursor:pointer;text-decoration:underline;text-underline-offset:4px" style-hover="color:#232d36">Envoyer une autre demande</button>
           </div>
         </div>
@@ -402,7 +418,7 @@ window.__resources = {
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px">
               <sc-for list="{{ prestations }}" as="p" hint-placeholder-count="4">
                 <button type="button" onClick="{{ p.toggle }}" aria-pressed="{{ p.on }}" style="display:flex;align-items:center;gap:12px;text-align:left;padding:14px 16px;border-radius:10px;border:1px solid {{ p.border }};background:{{ p.bg }};font-family:Archivo;font-size:15px;font-weight:600;color:#232d36;cursor:pointer;transition:border-color .14s cubic-bezier(.2,0,.2,1),background .14s cubic-bezier(.2,0,.2,1)" style-hover="border-color:#e9ac2d;color:#232d36">
-                  <span style="color:{{ p.iconColor }};display:inline-flex"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-check.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-check.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span>
+                  <span style="color:{{ p.iconColor }};display:inline-flex"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-circle-check);mask-image:var(--ico-circle-check);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span>
                   <span>{{ p.label }}</span>
                 </button>
               </sc-for>
@@ -410,7 +426,7 @@ window.__resources = {
             <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
               <div>
                 <label for="cz-bien" style="display:block;font-size:13px;font-weight:600;letter-spacing:.01em;color:#3e4e5c;margin-bottom:8px">Type de bien</label>
-                <select id="cz-bien" value="{{ f_bien }}" onChange="{{ set_bien }}" style="width:100%;height:52px;padding:0 16px;border-radius:10px;border:1px solid #dfe4e9;background:#ffffff;font-family:Archivo,sans-serif;font-size:16px;color:#232d36;outline:none;transition:border-color .14s cubic-bezier(.2,0,.2,1),box-shadow .14s cubic-bezier(.2,0,.2,1);appearance:none;background-image:url('https://unpkg.com/lucide-static@0.544.0/icons/chevron-down.svg');background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:44px" style-focus="border-color:#e9ac2d;box-shadow:0 0 0 3px rgba(233,172,45,.45)">
+                <select id="cz-bien" value="{{ f_bien }}" onChange="{{ set_bien }}" style="width:100%;height:52px;padding:0 16px;border-radius:10px;border:1px solid #dfe4e9;background:#ffffff;font-family:Archivo,sans-serif;font-size:16px;color:#232d36;outline:none;transition:border-color .14s cubic-bezier(.2,0,.2,1),box-shadow .14s cubic-bezier(.2,0,.2,1);appearance:none;background-image:var(--ico-chevron-down);background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:44px" style-focus="border-color:#e9ac2d;box-shadow:0 0 0 3px rgba(233,172,45,.45)">
                   <option value="maison">Maison individuelle</option>
                   <option value="immeuble">Immeuble / copropriété</option>
                   <option value="local">Local professionnel</option>
@@ -426,7 +442,7 @@ window.__resources = {
               </div>
               <div>
                 <label for="cz-delai" style="display:block;font-size:13px;font-weight:600;letter-spacing:.01em;color:#3e4e5c;margin-bottom:8px">Échéance souhaitée</label>
-                <select id="cz-delai" value="{{ f_delai }}" onChange="{{ set_delai }}" style="width:100%;height:52px;padding:0 16px;border-radius:10px;border:1px solid #dfe4e9;background:#ffffff;font-family:Archivo,sans-serif;font-size:16px;color:#232d36;outline:none;transition:border-color .14s cubic-bezier(.2,0,.2,1),box-shadow .14s cubic-bezier(.2,0,.2,1);appearance:none;background-image:url('https://unpkg.com/lucide-static@0.544.0/icons/chevron-down.svg');background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:44px" style-focus="border-color:#e9ac2d;box-shadow:0 0 0 3px rgba(233,172,45,.45)">
+                <select id="cz-delai" value="{{ f_delai }}" onChange="{{ set_delai }}" style="width:100%;height:52px;padding:0 16px;border-radius:10px;border:1px solid #dfe4e9;background:#ffffff;font-family:Archivo,sans-serif;font-size:16px;color:#232d36;outline:none;transition:border-color .14s cubic-bezier(.2,0,.2,1),box-shadow .14s cubic-bezier(.2,0,.2,1);appearance:none;background-image:var(--ico-chevron-down);background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:44px" style-focus="border-color:#e9ac2d;box-shadow:0 0 0 3px rgba(233,172,45,.45)">
                   <option value="urgent">Dès que possible</option>
                   <option value="3mois">Dans les 3 mois</option>
                   <option value="6mois">Dans les 6 mois</option>
@@ -444,7 +460,7 @@ window.__resources = {
               <div>
                 <label for="cz-ville" style="display:block;font-size:13px;font-weight:600;letter-spacing:.01em;color:#3e4e5c;margin-bottom:8px">Commune du chantier <span style="color:#c0392b">*</span></label>
                 <input id="cz-ville" type="text" placeholder="Meaux" value="{{ f_ville }}" onChange="{{ set_ville }}" aria-invalid="{{ err_ville }}" style="width:100%;height:52px;padding:0 16px;border-radius:10px;border:1px solid #dfe4e9;background:#ffffff;font-family:Archivo,sans-serif;font-size:16px;color:#232d36;outline:none;transition:border-color .14s cubic-bezier(.2,0,.2,1),box-shadow .14s cubic-bezier(.2,0,.2,1);border-color:{{ bd_ville }}" style-focus="border-color:#e9ac2d;box-shadow:0 0 0 3px rgba(233,172,45,.45)">
-                <sc-if value="{{ err_ville }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;color:#c0392b"><span aria-hidden="true" style="display:inline-block;width:14px;height:14px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-alert.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-alert.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Indiquez la commune du chantier.</div></sc-if>
+                <sc-if value="{{ err_ville }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;color:#c0392b"><span aria-hidden="true" style="display:inline-block;width:14px;height:14px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-circle-alert);mask-image:var(--ico-circle-alert);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Indiquez la commune du chantier.</div></sc-if>
               </div>
               <div>
                 <label for="cz-cp" style="display:block;font-size:13px;font-weight:600;letter-spacing:.01em;color:#3e4e5c;margin-bottom:8px">Code postal</label>
@@ -465,44 +481,44 @@ window.__resources = {
               <div>
                 <label for="cz-nom" style="display:block;font-size:13px;font-weight:600;letter-spacing:.01em;color:#3e4e5c;margin-bottom:8px">Nom et prénom <span style="color:#c0392b">*</span></label>
                 <input id="cz-nom" type="text" placeholder="Claire Berthier" value="{{ f_nom }}" onChange="{{ set_nom }}" aria-invalid="{{ err_nom }}" style="width:100%;height:52px;padding:0 16px;border-radius:10px;border:1px solid #dfe4e9;background:#ffffff;font-family:Archivo,sans-serif;font-size:16px;color:#232d36;outline:none;transition:border-color .14s cubic-bezier(.2,0,.2,1),box-shadow .14s cubic-bezier(.2,0,.2,1);border-color:{{ bd_nom }}" style-focus="border-color:#e9ac2d;box-shadow:0 0 0 3px rgba(233,172,45,.45)">
-                <sc-if value="{{ err_nom }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;color:#c0392b"><span aria-hidden="true" style="display:inline-block;width:14px;height:14px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-alert.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-alert.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Indiquez votre nom.</div></sc-if>
+                <sc-if value="{{ err_nom }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;color:#c0392b"><span aria-hidden="true" style="display:inline-block;width:14px;height:14px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-circle-alert);mask-image:var(--ico-circle-alert);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Indiquez votre nom.</div></sc-if>
               </div>
               <div>
                 <label for="cz-tel" style="display:block;font-size:13px;font-weight:600;letter-spacing:.01em;color:#3e4e5c;margin-bottom:8px">Téléphone <span style="color:#c0392b">*</span></label>
                 <input id="cz-tel" type="tel" placeholder="06 12 34 56 78" value="{{ f_tel }}" onChange="{{ set_tel }}" aria-invalid="{{ err_tel }}" style="width:100%;height:52px;padding:0 16px;border-radius:10px;border:1px solid #dfe4e9;background:#ffffff;font-family:Archivo,sans-serif;font-size:16px;color:#232d36;outline:none;transition:border-color .14s cubic-bezier(.2,0,.2,1),box-shadow .14s cubic-bezier(.2,0,.2,1);font-family:'IBM Plex Mono',monospace;border-color:{{ bd_tel }}" style-focus="border-color:#e9ac2d;box-shadow:0 0 0 3px rgba(233,172,45,.45)">
-                <sc-if value="{{ err_tel }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;color:#c0392b"><span aria-hidden="true" style="display:inline-block;width:14px;height:14px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-alert.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-alert.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Numéro à 10 chiffres attendu.</div></sc-if>
+                <sc-if value="{{ err_tel }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;color:#c0392b"><span aria-hidden="true" style="display:inline-block;width:14px;height:14px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-circle-alert);mask-image:var(--ico-circle-alert);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Numéro à 10 chiffres attendu.</div></sc-if>
               </div>
               <div>
                 <label for="cz-mail" style="display:block;font-size:13px;font-weight:600;letter-spacing:.01em;color:#3e4e5c;margin-bottom:8px">Email</label>
                 <input id="cz-mail" type="email" placeholder="claire.berthier@email.fr" value="{{ f_mail }}" onChange="{{ set_mail }}" aria-invalid="{{ err_mail }}" style="width:100%;height:52px;padding:0 16px;border-radius:10px;border:1px solid #dfe4e9;background:#ffffff;font-family:Archivo,sans-serif;font-size:16px;color:#232d36;outline:none;transition:border-color .14s cubic-bezier(.2,0,.2,1),box-shadow .14s cubic-bezier(.2,0,.2,1);border-color:{{ bd_mail }}" style-focus="border-color:#e9ac2d;box-shadow:0 0 0 3px rgba(233,172,45,.45)">
-                <sc-if value="{{ err_mail }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;color:#c0392b"><span aria-hidden="true" style="display:inline-block;width:14px;height:14px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-alert.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-alert.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Cet email semble incomplet.</div></sc-if>
+                <sc-if value="{{ err_mail }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;color:#c0392b"><span aria-hidden="true" style="display:inline-block;width:14px;height:14px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-circle-alert);mask-image:var(--ico-circle-alert);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Cet email semble incomplet.</div></sc-if>
               </div>
             </div>
             <label style="margin-top:20px;display:flex;gap:12px;align-items:flex-start;cursor:pointer">
               <input type="checkbox" checked="{{ f_rgpd }}" onChange="{{ set_rgpd }}" style="width:20px;height:20px;margin:2px 0 0;accent-color:#e9ac2d;flex:0 0 auto;cursor:pointer">
               <span style="font-size:14px;line-height:1.55;color:#546575">J'accepte que Cozybat utilise ces informations pour me recontacter au sujet de ma demande. <span style="color:#c0392b">*</span></span>
             </label>
-            <sc-if value="{{ err_rgpd }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;color:#c0392b"><span aria-hidden="true" style="display:inline-block;width:14px;height:14px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-alert.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-alert.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Votre accord est nécessaire pour traiter la demande.</div></sc-if>
+            <sc-if value="{{ err_rgpd }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;color:#c0392b"><span aria-hidden="true" style="display:inline-block;width:14px;height:14px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-circle-alert);mask-image:var(--ico-circle-alert);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Votre accord est nécessaire pour traiter la demande.</div></sc-if>
           </fieldset>
 
           <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><input type="text" tabIndex="-1" autoComplete="off" value="{{ f_hp }}" onChange="{{ set_hp }}" /></div>
 
           <sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
             <div style="margin-top:24px;display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:10px;background:#fdf1ef;border:1px solid #f2c9c2">
-              <span style="color:#c0392b;display:inline-flex;margin-top:1px"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/triangle-alert.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/triangle-alert.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span>
+              <span style="color:#c0392b;display:inline-flex;margin-top:1px"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-triangle-alert);mask-image:var(--ico-triangle-alert);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span>
               <span style="font-size:14px;line-height:1.55;color:#8f2d20">Quelques champs sont à compléter avant l'envoi.</span>
             </div>
           </sc-if>
 
           <sc-if value="{{ sendError }}" hint-placeholder-val="{{ false }}">
             <div style="margin-top:24px;display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:10px;background:#fdf1ef;border:1px solid #f2c9c2">
-              <span style="color:#c0392b;display:inline-flex;margin-top:1px"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/triangle-alert.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/triangle-alert.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span>
+              <span style="color:#c0392b;display:inline-flex;margin-top:1px"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-triangle-alert);mask-image:var(--ico-triangle-alert);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span>
               <span style="font-size:14px;line-height:1.55;color:#8f2d20">L'envoi a échoué. Réessayez dans un instant, ou appelez-nous directement au <a href="{{ telHref }}" style="color:#8f2d20;font-weight:700;text-decoration:underline">{{ telDisplay }}</a>.</span>
             </div>
           </sc-if>
 
           <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:16px;align-items:center">
-            <button type="submit" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 30px;border:none;border-radius:9999px;background:#e9ac2d;font-family:Archivo;font-size:15px;font-weight:600;color:#232d36;cursor:pointer;box-shadow:0 6px 18px rgba(200,138,18,.28);transition:background .08s cubic-bezier(.2,0,.2,1),transform .14s cubic-bezier(.2,0,.2,1)" style-hover="background:#f0be5c" style-active="background:#c98a12;transform:scale(0.985)" disabled="{{ sending }}">{{ libelleEnvoi }} <span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/arrow-right.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/arrow-right.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></button>
+            <button type="submit" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 30px;border:none;border-radius:9999px;background:#e9ac2d;font-family:Archivo;font-size:15px;font-weight:600;color:#232d36;cursor:pointer;box-shadow:0 6px 18px rgba(200,138,18,.28);transition:background .08s cubic-bezier(.2,0,.2,1),transform .14s cubic-bezier(.2,0,.2,1)" style-hover="background:#f0be5c" style-active="background:#c98a12;transform:scale(0.985)" disabled="{{ sending }}">{{ libelleEnvoi }} <span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-arrow-right);mask-image:var(--ico-arrow-right);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></button>
             <div style="font-size:14px;color:#6e8091">Réponse sous 48 h ouvrées. Sans engagement.</div>
           </div>
         </form>
@@ -512,18 +528,18 @@ window.__resources = {
             <div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#e9ac2d">Plus rapide</div>
             <div style="margin-top:14px;font-family:Archivo;font-size:20px;font-weight:700;color:#ffffff;line-height:1.3">Appelez-nous directement.</div>
             <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px">
-              <a href="{{ telHref }}" style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:17px;color:#ffffff" style-hover="color:#e9ac2d"><span aria-hidden="true" style="display:inline-block;width:18px;height:18px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/phone.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/phone.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> {{ telDisplay }}</a>
-              <a href="{{ mailHref }}" style="display:flex;align-items:center;gap:10px;font-size:15px;color:#c2cbd3" style-hover="color:#ffffff"><span aria-hidden="true" style="display:inline-block;width:18px;height:18px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/mail.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/mail.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> {{ emailDisplay }}</a>
+              <a href="{{ telHref }}" style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:17px;color:#ffffff" style-hover="color:#e9ac2d"><span aria-hidden="true" style="display:inline-block;width:18px;height:18px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-phone);mask-image:var(--ico-phone);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> {{ telDisplay }}</a>
+              <a href="{{ mailHref }}" style="display:flex;align-items:center;gap:10px;font-size:15px;color:#c2cbd3" style-hover="color:#ffffff"><span aria-hidden="true" style="display:inline-block;width:18px;height:18px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-mail);mask-image:var(--ico-mail);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> {{ emailDisplay }}</a>
             </div>
           </div>
           <div style="background:#ffffff;border:1px solid #dfe4e9;border-radius:14px;padding:26px;width:348px;height:165px">
             <div style="display:flex;flex-direction:column;gap:18px">
               <div style="display:flex;gap:12px;align-items:flex-start">
-                <span style="color:#c98a12;display:inline-flex;margin-top:1px"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/shield-check.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/shield-check.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span>
+                <span style="color:#c98a12;display:inline-flex;margin-top:1px"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-shield-check);mask-image:var(--ico-shield-check);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span>
                 <div><div style="font-size:15px;font-weight:600;color:#232d36">Visite et devis gratuits</div><div style="margin-top:4px;font-size:14px;line-height:1.5;color:#6e8091">Nous passons voir la façade avant de chiffrer.</div></div>
               </div>
               <div style="display:flex;gap:12px;align-items:flex-start">
-                <span style="color:#c98a12;display:inline-flex;margin-top:1px"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/file-check.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/file-check.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span>
+                <span style="color:#c98a12;display:inline-flex;margin-top:1px"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-file-check);mask-image:var(--ico-file-check);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span>
                 <div><div style="font-size:15px;font-weight:600;color:#232d36">Un devis détaillé, poste par poste</div><div style="margin-top:4px;font-size:14px;line-height:1.5;color:#6e8091">La facture correspond au devis signé.</div></div>
               </div>
             </div>
@@ -563,8 +579,8 @@ window.__resources = {
         <div id="footer-contact">
           <div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#e9ac2d">Contact</div>
           <div style="margin-top:18px;display:flex;flex-direction:column;gap:12px;font-size:15px;color:#c2cbd3">
-            <a href="{{ telHref }}" style="display:flex;align-items:center;gap:10px;color:#c2cbd3" style-hover="color:#ffffff"><span aria-hidden="true" style="display:inline-block;width:16px;height:16px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/phone.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/phone.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> <span style="font-family:'IBM Plex Mono',monospace">{{ telDisplay }}</span></a>
-            <a href="{{ mailHref }}" style="display:flex;align-items:center;gap:10px;color:#c2cbd3" style-hover="color:#ffffff"><span aria-hidden="true" style="display:inline-block;width:16px;height:16px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/mail.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/mail.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> {{ emailDisplay }}</a>
+            <a href="{{ telHref }}" style="display:flex;align-items:center;gap:10px;color:#c2cbd3" style-hover="color:#ffffff"><span aria-hidden="true" style="display:inline-block;width:16px;height:16px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-phone);mask-image:var(--ico-phone);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> <span style="font-family:'IBM Plex Mono',monospace">{{ telDisplay }}</span></a>
+            <a href="{{ mailHref }}" style="display:flex;align-items:center;gap:10px;color:#c2cbd3" style-hover="color:#ffffff"><span aria-hidden="true" style="display:inline-block;width:16px;height:16px;flex:0 0 auto;background:currentColor;-webkit-mask-image:var(--ico-mail);mask-image:var(--ico-mail);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> {{ emailDisplay }}</a>
             <span>{{ adresseDisplay }}</span>
             <span style="color:#6e8091;font-size:13px">SIRET et assurance décennale communiqués sur le devis.</span>
           </div>
@@ -629,28 +645,58 @@ class Component extends DCLogic {
         .then(r => { if (r.ok) v.src = src; })
         .catch(() => {});
     }
+    // Barre de progression, parallaxe du hero et etat de l'en-tete.
+    //
+    // La version precedente relisait a chaque image la hauteur du document
+    // et celle de la fenetre, et recherchait les trois elements dans le DOM.
+    // Lire une mesure de mise en page juste apres avoir modifie un style
+    // oblige le navigateur a recalculer la page immediatement, en plein
+    // milieu du defilement. On mesure donc une fois, et on ne remesure que
+    // lorsque la page change reellement de dimensions.
     let raf = 0;
-    this.onScroll = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        raf = 0;
-        const y = window.scrollY || 0;
-        const doc = document.documentElement;
-        const max = Math.max(1, doc.scrollHeight - window.innerHeight);
-        const bar = document.querySelector('[data-progress]');
-        if (bar) bar.style.transform = 'scaleX(' + Math.min(1, y / max) + ')';
-        const hero = document.querySelector('[data-heroimg]');
-        if (hero && y < window.innerHeight * 1.2) hero.style.transform = 'translate3d(0,' + (y * 0.14) + 'px,0)';
-        const head = document.querySelector('[data-header]');
-        if (head) head.dataset.scrolled = y > 40 ? '1' : '0';
-      });
+    let barre = null, heroImg = null, entete = null;
+    let hauteurVue = window.innerHeight;
+    let defilementMax = 1;
+
+    const mesurer = () => {
+      barre = document.querySelector('[data-progress]');
+      heroImg = document.querySelector('[data-heroimg]');
+      entete = document.querySelector('[data-header]');
+      hauteurVue = window.innerHeight;
+      defilementMax = Math.max(1, document.documentElement.scrollHeight - hauteurVue);
     };
+
+    // N'ecrit que des styles, ne lit aucune mesure : pas de recalcul force.
+    const peindre = () => {
+      raf = 0;
+      const y = window.scrollY || 0;
+      if (barre) barre.style.transform = 'scaleX(' + Math.min(1, y / defilementMax) + ')';
+      if (heroImg && y < hauteurVue * 1.2) heroImg.style.transform = 'translate3d(0,' + (y * 0.14) + 'px,0)';
+      if (entete) entete.dataset.scrolled = y > 40 ? '1' : '0';
+    };
+
+    this.onScroll = () => { if (!raf) raf = requestAnimationFrame(peindre); };
+    this.onResize = () => { mesurer(); this.onScroll(); };
+
+    mesurer();
     window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize, { passive: true });
+
+    // La hauteur du document grandit a mesure que les photos arrivent :
+    // sans cela la barre de progression resterait calee sur une mauvaise
+    // hauteur pendant tout le chargement.
+    if (window.ResizeObserver) {
+      this.observateurTaille = new ResizeObserver(mesurer);
+      this.observateurTaille.observe(document.documentElement);
+    }
+
     this.onScroll();
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    if (this.observateurTaille) this.observateurTaille.disconnect();
   }
 
   setPos(i, e) {
