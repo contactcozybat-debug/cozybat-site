@@ -10,4 +10,4 @@ desktop.ini
 *.swp
 
 # Demandes non delivrees par email (genere par contact.php)
-demandes-non-envoyees.log
+demandes-non-envoyees.log.php

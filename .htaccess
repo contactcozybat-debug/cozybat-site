@@ -1,0 +1,55 @@
+# =========================================================================
+# COZYBAT — durees de mise en cache navigateur
+#
+# Ne contient que des regles de cache. Si votre hebergement possede deja
+# un .htaccess (redirection HTTPS, redirection www, regles de securite),
+# NE REMPLACEZ PAS le fichier existant : recopiez le bloc ci-dessous a la
+# fin du sien. Ce fichier ecraserait sinon ses regles.
+#
+# ATTENTION AUX PHOTOS : les fichiers de assets/ sont gardes 30 jours par
+# le navigateur des visiteurs. Si vous remplacez une photo en gardant le
+# meme nom de fichier, ceux qui ont deja vu le site continueront de voir
+# l'ancienne pendant un mois. Pour un changement immediat, donnez un
+# nouveau nom au fichier (ph-hero-2.jpg plutot que ph-hero.jpg).
+# Le HTML, lui, n'est jamais mis en cache : les textes et les prix
+# apparaissent immediatement apres une mise en ligne.
+# =========================================================================
+
+<IfModule mod_headers.c>
+
+  # Images, scripts, styles et polices : 30 jours.
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|avif|svg|ico|js|css|woff|woff2|ttf)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+
+  # Pages HTML : jamais mises en cache, pour que les mises a jour du site
+  # soient visibles tout de suite.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # Le script de reception des demandes ne doit jamais etre mis en cache.
+  <FilesMatch "\.php$">
+    Header set Cache-Control "no-store"
+  </FilesMatch>
+
+</IfModule>
+
+# Repli pour les serveurs sans mod_headers.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg        "access plus 30 days"
+  ExpiresByType image/png         "access plus 30 days"
+  ExpiresByType image/webp        "access plus 30 days"
+  ExpiresByType image/svg+xml     "access plus 30 days"
+  ExpiresByType text/css          "access plus 30 days"
+  ExpiresByType text/javascript   "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  ExpiresByType font/woff2        "access plus 30 days"
+  ExpiresByType text/html         "access plus 0 seconds"
+</IfModule>
+
+# Empeche la lecture du journal des demandes non delivrees.
+<Files "demandes-non-envoyees.log.php">
+  Require all denied
+</Files>

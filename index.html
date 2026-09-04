@@ -3,6 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+// Sert React depuis le site plutot que depuis unpkg.com : supprime une
+// connexion a un domaine tiers sur le chemin critique du rendu.
+// support.js consulte cette table avant de recourir au CDN.
+window.__resources = {
+  "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "vendor/react.production.min.js",
+  "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "vendor/react-dom.production.min.js"
+};
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -10,6 +19,8 @@
 <helmet>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cozybat — Ravalement, isolation et rénovation de façade</title>
+<link rel="preload" as="image" href="assets/ph-hero.jpg" fetchpriority="high">
+<link rel="preconnect" href="https://unpkg.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -58,7 +69,7 @@
 
   <header data-header="1" style="position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(250,248,244,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(35,45,54,.08)">
     <div data-headbar="1" style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,4vw,32px);height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px">
-      <a href="#accueil" style="display:flex;align-items:center"><img src="assets/logo-cozybat.png" alt="Cozybat" style="height:42px;width:auto;display:block"></a>
+      <a href="#accueil" style="display:flex;align-items:center"><img src="assets/logo-cozybat.png" alt="Cozybat" width="1177" height="579" style="height:42px;width:auto;display:block"></a>
       <nav data-desknav="1" style="display:flex;align-items:center;gap:clamp(16px,2.2vw,30px)">
         <a href="#accueil" data-navlink="1" style="font-size:14px;font-weight:500;color:#3e4e5c" style-hover="color:#232d36">Accueil</a>
         <a href="#services" data-navlink="1" style="font-size:14px;font-weight:500;color:#3e4e5c" style-hover="color:#232d36">Nos services</a>
@@ -527,7 +538,7 @@
     <div style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,4vw,32px)">
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(28px,4vw,48px)">
         <div>
-          <img src="assets/logo-cozybat-on-dark.png" alt="Cozybat" style="height:48px;width:auto;display:block">
+          <img src="assets/logo-cozybat-on-dark.png" alt="Cozybat" width="1177" height="579" style="height:48px;width:auto;display:block">
           <p style="margin:16px 0 0;max-width:280px;font-size:15px;line-height:1.65;color:#93a2af;text-wrap:pretty">La rénovation qui redonne du caractère à vos façades.</p>
         </div>
         <div>

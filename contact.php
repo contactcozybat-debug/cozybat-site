@@ -8,12 +8,16 @@
    si vous voulez forcer une adresse précise.
 
    Si un email n'arrive pas, la demande est écrite dans le fichier
-   demandes-non-envoyees.log, à côté de ce script. Rien n'est jamais perdu.
+   demandes-non-envoyees.log.php, à côté de ce script. Rien n'est perdu.
+   Ce journal contient des données personnelles : il porte l'extension
+   .php et commence par une instruction d'arrêt, pour qu'un accès direct
+   depuis un navigateur ne renvoie rien. Consultez-le par le gestionnaire
+   de fichiers de l'hébergeur.
    ========================================================================= */
 
 const DESTINATAIRE = 'contact.cozybat@gmail.com';
 const EXPEDITEUR   = '';  // vide = noreply@<domaine du site>
-const JOURNAL      = __DIR__ . '/demandes-non-envoyees.log';
+const JOURNAL      = __DIR__ . '/demandes-non-envoyees.log.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -149,6 +153,11 @@ if (!$envoye) {
     /* Filet de sécurité : l'email a échoué, on garde la demande sur le
        serveur plutôt que de la perdre. Consultable via le gestionnaire
        de fichiers Hostinger. */
+    if (!file_exists(JOURNAL)) {
+        // Garde-fou : si le fichier est demandé depuis un navigateur, PHP
+        // l'exécute et s'arrête aussitôt au lieu d'afficher les données.
+        @file_put_contents(JOURNAL, '<?php exit; ?>' . PHP_EOL);
+    }
     @file_put_contents(
         JOURNAL,
         "\n===== " . $horodate . " =====\n" . $corps,
