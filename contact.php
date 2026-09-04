@@ -11,7 +11,7 @@
    demandes-non-envoyees.log, à côté de ce script. Rien n'est jamais perdu.
    ========================================================================= */
 
-const DESTINATAIRE = 'contact@cozybat.fr';
+const DESTINATAIRE = 'contact.cozybat@gmail.com';
 const EXPEDITEUR   = '';  // vide = noreply@<domaine du site>
 const JOURNAL      = __DIR__ . '/demandes-non-envoyees.log';
 

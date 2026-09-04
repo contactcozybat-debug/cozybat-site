@@ -570,7 +570,7 @@
   </footer>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;telephone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;06 95 44 17 93&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Coordonnées&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;contact@cozybat.fr&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Coordonnées&quot;},&quot;adresse&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Île-de-France et communes limitrophes&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Coordonnées&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;telephone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;06 95 44 17 93&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Coordonnées&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;contact.cozybat@gmail.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Coordonnées&quot;},&quot;adresse&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Île-de-France et communes limitrophes&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Coordonnées&quot;}}">
 class Component extends DCLogic {
   state = {
     menu: false,
@@ -665,7 +665,7 @@ class Component extends DCLogic {
     const anyError = Object.keys(e).some(k => e[k]);
 
     const tel = this.props.telephone ?? '06 95 44 17 93';
-    const email = this.props.email ?? 'contact@cozybat.fr';
+    const email = this.props.email ?? 'contact.cozybat@gmail.com';
     const adresse = this.props.adresse ?? 'Île-de-France et communes limitrophes';
 
     return {
