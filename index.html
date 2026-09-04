@@ -474,6 +474,8 @@
             <sc-if value="{{ err_rgpd }}" hint-placeholder-val="{{ false }}"><div style="margin-top:8px;display:flex;align-items:center;gap:6px;font-size:13px;color:#c0392b"><span aria-hidden="true" style="display:inline-block;width:14px;height:14px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-alert.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/circle-alert.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span> Votre accord est nécessaire pour traiter la demande.</div></sc-if>
           </fieldset>
 
+          <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><input type="text" tabIndex="-1" autoComplete="off" value="{{ f_hp }}" onChange="{{ set_hp }}" /></div>
+
           <sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
             <div style="margin-top:24px;display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:10px;background:#fdf1ef;border:1px solid #f2c9c2">
               <span style="color:#c0392b;display:inline-flex;margin-top:1px"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/triangle-alert.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/triangle-alert.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span>
@@ -481,8 +483,15 @@
             </div>
           </sc-if>
 
+          <sc-if value="{{ sendError }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:24px;display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:10px;background:#fdf1ef;border:1px solid #f2c9c2">
+              <span style="color:#c0392b;display:inline-flex;margin-top:1px"><span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/triangle-alert.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/triangle-alert.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></span>
+              <span style="font-size:14px;line-height:1.55;color:#8f2d20">L'envoi a échoué. Réessayez dans un instant, ou appelez-nous directement au <a href="{{ telHref }}" style="color:#8f2d20;font-weight:700;text-decoration:underline">{{ telDisplay }}</a>.</span>
+            </div>
+          </sc-if>
+
           <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:16px;align-items:center">
-            <button type="submit" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 30px;border:none;border-radius:9999px;background:#e9ac2d;font-family:Archivo;font-size:15px;font-weight:600;color:#232d36;cursor:pointer;box-shadow:0 6px 18px rgba(200,138,18,.28);transition:background .08s cubic-bezier(.2,0,.2,1),transform .14s cubic-bezier(.2,0,.2,1)" style-hover="background:#f0be5c" style-active="background:#c98a12;transform:scale(0.985)">Demander un devis gratuit <span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/arrow-right.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/arrow-right.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></button>
+            <button type="submit" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 30px;border:none;border-radius:9999px;background:#e9ac2d;font-family:Archivo;font-size:15px;font-weight:600;color:#232d36;cursor:pointer;box-shadow:0 6px 18px rgba(200,138,18,.28);transition:background .08s cubic-bezier(.2,0,.2,1),transform .14s cubic-bezier(.2,0,.2,1)" style-hover="background:#f0be5c" style-active="background:#c98a12;transform:scale(0.985)" disabled="{{ sending }}">{{ libelleEnvoi }} <span aria-hidden="true" style="display:inline-block;width:20px;height:20px;flex:0 0 auto;background:currentColor;-webkit-mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/arrow-right.svg');mask-image:url('https://unpkg.com/lucide-static@0.544.0/icons/arrow-right.svg');-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center"></span></button>
             <div style="font-size:14px;color:#6e8091">Réponse sous 48 h ouvrées. Sans engagement.</div>
           </div>
         </form>
@@ -567,6 +576,9 @@ class Component extends DCLogic {
     menu: false,
     ba: [50, 50],
     sent: false,
+    sending: false,
+    sendError: false,
+    hp: '',
     touched: false,
     picked: ['ravalement'],
     form: { bien: 'maison', surface: '', delai: '3mois', ville: '', cp: '', msg: '', nom: '', tel: '', mail: '', rgpd: false }
@@ -666,11 +678,34 @@ class Component extends DCLogic {
       sent: this.state.sent,
       notSent: !this.state.sent,
       hasErrors: this.state.touched && anyError,
-      resetForm: () => this.setState({ sent: false, touched: false }),
+      sending: this.state.sending,
+      sendError: this.state.sendError,
+      libelleEnvoi: this.state.sending ? 'Envoi en cours...' : 'Demander un devis gratuit',
+      f_hp: this.state.hp,
+      set_hp: ev => this.setState({ hp: ev.target.value }),
+      resetForm: () => this.setState({ sent: false, sendError: false, touched: false }),
       submit: ev => {
         ev.preventDefault();
         if (anyError) { this.setState({ touched: true }); return; }
-        this.setState({ sent: true, touched: false });
+        if (this.state.sending) return;
+        this.setState({ sending: true, sendError: false, touched: false });
+        fetch('contact.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.assign({}, this.state.form, {
+            prestations: this.state.picked,
+            website: this.state.hp
+          }))
+        })
+          .then(r => r.json().catch(() => null))
+          .then(r => {
+            // Succes uniquement sur un {"ok":true} explicite de contact.php.
+            // Toute autre reponse (PHP non execute, page d'erreur de l'hebergeur,
+            // redirection) doit afficher l'echec, jamais une fausse confirmation.
+            if (r && r.ok === true) this.setState({ sent: true, sending: false });
+            else this.setState({ sending: false, sendError: true });
+          })
+          .catch(() => this.setState({ sending: false, sendError: true }));
       },
 
       prestations: Component.PRESTATIONS.map(p => {

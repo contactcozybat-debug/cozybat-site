@@ -8,3 +8,6 @@ desktop.ini
 .vscode/
 .idea/
 *.swp
+
+# Demandes non delivrees par email (genere par contact.php)
+demandes-non-envoyees.log
