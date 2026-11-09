@@ -7,6 +7,7 @@ from datetime import date
 from PIL import Image
 import donnees as D
 from guides import GUIDES
+import maconnerie
 GBY = {g['slug']: g for g in GUIDES}
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -130,7 +131,7 @@ def img_size(rel):
 def url(path):  # URL propre : chaque page est un dossier /page/ (fonctionne même sans .htaccess)
     return '/' if path in ('', 'index') else '/' + path + '/'
 
-PAGE_RE = re.compile(r'href="/((?:isolation-exterieure|ravalement-facade|nos-realisations|devis|merci|mentions-legales|confidentialite|ravalement-isolation-[a-z-]+|chantiers/[a-z-]+|guides|guides/[a-z-]+))(?=[?#"])')
+PAGE_RE = re.compile(r'href="/((?:isolation-exterieure|ravalement-facade|nos-realisations|devis|merci|mentions-legales|confidentialite|maconnerie-facade|ravalement-isolation-[a-z-]+|chantiers/[a-z-]+|guides|guides/[a-z-]+))(?=[?#"])')
 
 PAGES = []  # (path, priority, indexable)
 
@@ -248,6 +249,7 @@ def footer(stack=False):
 <ul>
 <li><a href="/isolation-exterieure">Isolation thermique par l’extérieur</a></li>
 <li><a href="/ravalement-facade">Ravalement de façade D3 armé</a></li>
+<li><a href="/maconnerie-facade">Maçonnerie de façade : reprises et appuis</a></li>
 <li><a href="/nos-realisations">Nos réalisations avant / après</a></li>
 <li><a href="/guides/prix-isolation-exterieure">Prix de l’isolation par l’extérieur</a></li>
 <li><a href="/guides/prix-ravalement-facade">Prix d’un ravalement de façade</a></li>
@@ -557,7 +559,7 @@ def page_system(sys):
     local = f'''<section class="sec-tight"><div class="wrap">
 <p class="kicker">Près de chez vous</p><h2 class="h2" style="font-size:clamp(24px,3vw,36px);margin-bottom:18px">Nos interventions en Essonne</h2>
 <div class="links-row">{cities}</div>
-<p style="margin-top:24px"><a class="btn btn-navy" href="{other[0]}">{other[1]}</a></p>
+<p style="margin-top:24px"><a class="btn btn-navy" href="{other[0]}">{other[1]}</a> <a class="btn btn-outline" href="/maconnerie-facade">Reprises d’enduit, appuis et réparations de façade</a></p>
 </div></section>
 '''
     ld = [service_ld(name, desc, path, stype), crumbs_ld(cr), faq_ld(faq)]
@@ -693,6 +695,31 @@ def guides_home():
 <p style="margin-top:28px"><a class="btn btn-outline" href="/guides">Voir tous nos guides</a></p>
 </div></section>
 '''
+
+def page_maconnerie():
+    m = maconnerie.PAGE
+    path = m['path']
+    cr = [('Accueil', ''), ('Maçonnerie de façade', path)]
+    toc = ''.join(f'<li><a href="#s{i}">{e(h)}</a></li>' for i, (h, _) in enumerate(m['sections'], 1))
+    body = ''.join(f'<h2 id="s{i}">{e(h)}</h2>{html_}' for i, (h, html_) in enumerate(m['sections'], 1))
+    faq = ''.join(f'<details><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in m['faq'])
+    cards = '\n'.join(ba_card(c) for c in CHANTIERS if c['type'] == 'd3')
+    content = f"""<section class="sec" style="padding-top:40px"><div class="wrap">
+{crumbs_html(cr)}<article class="guide">
+<p class="kicker">Réparations de façade</p>
+<h1 class="h2">{e(m['h1'])}</h1>
+<p class="lead guide-intro">{e(m['intro'])}</p>
+<div class="hero-cta" style="margin:0 0 28px"><a class="btn btn-gold btn-lg" href="/devis?projet=d3" data-track="Clic devis">Demander un devis gratuit</a><a class="btn btn-outline btn-lg" href="tel:{TEL}">Appeler le {TEL_H}</a></div>
+<nav class="toc" aria-label="Sommaire"><p class="toc-t">Nos interventions</p><ol>{toc}</ol></nav>
+{body}
+<h2 id="faq-mac">Questions fréquentes</h2>
+<div class="faq-list guide-faq">{faq}</div>
+</article></div></section>
+{trust()}<section class="sec sec-warm"><div class="wrap"><div class="sec-head"><div><p class="kicker">Réalisations</p><h2 class="h2">Nos façades rénovées.</h2></div><p class="lead">Faites glisser pour comparer avant et après.</p></div><div class="ba-grid">{cards}</div></div></section>
+"""
+    desc = m['desc']
+    ld = [crumbs_ld(cr), faq_ld(m['faq']), service_ld('Maçonnerie de façade : reprises, appuis et réparations', desc, path, 'Maçonnerie et réparation de façade')]
+    write(path + '.html', head(path, m['title'], desc, ld=ld) + header() + content + cta_band('d3') + footer())
 
 def page_guide(g):
     path = 'guides/' + g['slug']
@@ -833,7 +860,7 @@ Contact : {TEL_H} · {MAIL} · {ADR_TXT}. Visite technique et devis gratuits, r�
 - [Mentions légales]({DOMAIN}/mentions-legales/)
 - [Politique de confidentialité]({DOMAIN}/confidentialite/)
 ''')
-    prio = {'': '1.0', 'isolation-exterieure': '0.9', 'ravalement-facade': '0.9', 'devis': '0.8', 'nos-realisations': '0.8'}
+    prio = {'': '1.0', 'isolation-exterieure': '0.9', 'ravalement-facade': '0.9', 'maconnerie-facade': '0.8', 'devis': '0.8', 'nos-realisations': '0.8'}
     rows = ''
     for p, noindex in PAGES:
         if noindex: continue
@@ -912,7 +939,7 @@ if __name__ == '__main__':
     page_index(); page_system('ite'); page_system('d3'); page_realisations()
     for c in CHANTIERS: page_case(c)
     for c in CITIES: page_city(c)
-    page_guides()
+    page_guides(); page_maconnerie()
     for g in GUIDES: page_guide(g)
     page_devis(); page_merci(); page_404(); page_mentions(); page_confid(); seo_files()
     print('ok', len(PAGES), 'pages')

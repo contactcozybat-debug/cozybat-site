@@ -297,7 +297,7 @@ dict(
             ['Ravalement D3 armé', 'Le crépi est fissuré ou fatigué mais adhérent', 'Les zones non adhérentes doivent être purgées avant'],
             ['Réfection complète de l’enduit', 'Le crépi se décolle sur de grandes surfaces', 'Plus long, nécessite un séchage entre les couches'],
             ['Isolation par l’extérieur', 'La maison est aussi froide ou chère à chauffer', 'Budget plus élevé, mais isolation et façade neuve']])
-     + p('Le ravalement D3 armé est souvent le meilleur compromis : un enduit armé d’un filet en fibre de verre recouvre toute la façade, ponte les microfissures et offre une finition neuve dans la teinte choisie. Le système est détaillé sur notre page ' + LINK_D3 + '.')),
+     + p('Pour des reprises ponctuelles (zones décollées, appuis, balcons), voir notre page <a href="/maconnerie-facade/">maçonnerie de façade</a>. Le ravalement D3 armé est souvent le meilleur compromis : un enduit armé d’un filet en fibre de verre recouvre toute la façade, ponte les microfissures et offre une finition neuve dans la teinte choisie. Le système est détaillé sur notre page ' + LINK_D3 + '.')),
     ('Quel budget prévoir ?',
      p('Pour un ravalement D3 armé, comptez chez Cozybat 100 à 120 € TTC par m² de façade en Essonne, échafaudage et finition compris ; les zones à purger sont chiffrées en plus selon leur surface. Les exemples de budget figurent dans notre guide du ' + LINK_PRIX_RAV + '.',
        'Si vous hésitez avec une isolation, comparez avec le ' + LINK_PRIX_ITE + ' : quand le crépi est à refaire de toute façon, l’écart entre les deux solutions se réduit.')),
