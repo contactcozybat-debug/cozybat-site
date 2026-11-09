@@ -191,7 +191,7 @@ dict(
     ('L’isolation par l’extérieur est-elle plus chère ?', 'Oui au m², mais elle comprend la rénovation complète de la façade. Si un ravalement est de toute façon nécessaire, l’écart se réduit fortement.'),
     ('Peut-on isoler par l’extérieur une maison mitoyenne ?', 'Oui. Les façades sur rue et sur jardin s’isolent normalement ; seul le raccord avec la maison voisine demande un traitement soigné. Pour un mur en limite de propriété, un droit de surplomb existe sous conditions.'),
   ],
-  related=['prix-isolation-exterieure', 'aides-isolation-exterieure', 'prix-ravalement-facade'],
+  related=['comment-isoler-mur-exterieur', 'prix-isolation-exterieure', 'aides-isolation-exterieure'],
 ),
 dict(
   slug='fissures-facade', kind='d3', short='Fissures de façade',
@@ -270,7 +270,7 @@ dict(
     ('Quelle épaisseur de polystyrène pour une ITE ?', 'En général 120 à 140 mm de polystyrène graphité pour atteindre la résistance thermique demandée pour les primes CEE (R ≥ 3,7 m².K/W). Une épaisseur de 160 à 200 mm améliore encore le confort.'),
     ('Le polystyrène en façade est-il dangereux en cas d’incendie ?', 'Sur une maison individuelle, les systèmes d’ITE sous enduit en polystyrène sont autorisés ; ils comportent des dispositions de protection prévues par les règles de pose, par exemple autour des baies ou en partie haute selon la configuration.'),
   ],
-  related=['prix-isolation-exterieure', 'aides-isolation-exterieure', 'isolation-interieure-ou-exterieure'],
+  related=['comment-isoler-mur-exterieur', 'prix-isolation-exterieure', 'aides-isolation-exterieure'],
 ),
 dict(
   slug='refaire-crepi-facade', kind='d3', short='Refaire le crépi de sa façade',
@@ -366,5 +366,64 @@ dict(
     ('Faut-il une autorisation pour changer la finition ou la couleur de sa façade ?', 'En général oui : un changement d’aspect ou de teinte relève d’une déclaration préalable de travaux en mairie, et le PLU peut imposer certaines couleurs. Renseignez-vous auprès du service urbanisme de votre commune avant de commander les travaux.'),
   ],
   related=['refaire-crepi-facade', 'prix-ravalement-facade', 'prix-isolation-exterieure'],
+),
+]
+
+GUIDES += [
+dict(
+  slug='comment-isoler-mur-exterieur', kind='ite', short='Comment isoler un mur extérieur ?',
+  title='Comment isoler un mur extérieur : les étapes | Cozybat',
+  desc='Comment isoler un mur extérieur de maison : techniques, étapes du chantier, épaisseur d’isolant, erreurs à éviter, démarches et budget en 2026.',
+  h1='Comment isoler un mur extérieur de maison ?',
+  intro='Les murs non isolés d’une maison font partie des principales sources de déperdition de chaleur. Voici comment on les isole concrètement : quelle technique choisir, ce qu’il faut vérifier avant de commencer, et comment se déroule un chantier, étape par étape.',
+  sections=[
+    ('Deux façons d’isoler un mur donnant sur l’extérieur',
+     p('Un mur extérieur peut s’isoler de deux côtés : par l’intérieur, en doublant le mur dans chaque pièce, ou par l’extérieur, en enveloppant la maison d’un isolant recouvert d’une nouvelle façade.',
+       'Par l’extérieur, l’isolant passe devant les planchers et les murs de refend : les ponts thermiques sont traités, vous ne perdez aucune surface habitable et vous restez chez vous pendant les travaux. Par l’intérieur, le chantier coûte moins cher mais se fait pièce par pièce. Notre ' + LINK_ITI + ' détaille les cas où chaque solution l’emporte. La suite de ce guide porte sur l’isolation par l’extérieur.')),
+    ('Les techniques d’isolation par l’extérieur',
+     table(['Technique', 'Principe', 'Pour quelle maison'],
+           [['ITE sous enduit', 'Panneaux isolants collés et chevillés sur le mur, puis enduit armé et finition', 'La plupart des maisons enduites, en parpaing, brique ou béton'],
+            ['Bardage ventilé', 'Ossature fixée au mur, isolant entre les montants, lame d’air et bardage (bois, composite, fibres-ciment)', 'Maisons à l’aspect bois ou contemporain, murs irréguliers'],
+            ['Enduit isolant', 'Enduit chargé de granulats isolants, appliqué en plusieurs centimètres', 'Murs anciens en pierre, quand une isolation épaisse est impossible : performance limitée']])
+     + p('Sur les pavillons de l’Essonne, l’ITE sous enduit est de loin la technique la plus courante : elle isole et refait la façade en une seule opération, en conservant l’aspect d’une maison enduite. Le système complet est présenté couche par couche sur notre page ' + LINK_ITE + '.')),
+    ('Ce qu’il faut vérifier avant de commencer',
+     ul('<strong>L’état du mur.</strong> L’isolant se colle sur un support sain : les parties d’enduit qui sonnent creux sont purgées, les fissures repérées. Une lézarde qui évolue demande un diagnostic de structure avant tout ; voir notre ' + LINK_FISS + '.',
+        '<strong>L’humidité.</strong> Un mur humide doit être assaini avant d’être isolé : on recherche la cause (remontées du sol, gouttière défectueuse, fuite) et on la traite d’abord.',
+        '<strong>La place disponible.</strong> L’isolation ajoute 15 à 20 cm à l’épaisseur des murs : il faut vérifier le débord de toiture, les appuis de fenêtre, les passages étroits et les murs en limite de propriété.',
+        '<strong>Les règles d’urbanisme.</strong> Une isolation par l’extérieur modifie l’aspect de la façade : une déclaration préalable de travaux en mairie est en général nécessaire, et le PLU peut encadrer les teintes.')),
+    ('Les étapes d’un chantier d’ITE sous enduit',
+     '<ol>'
+     + ''.join(f'<li>{x}</li>' for x in [
+        '<strong>Visite technique et devis.</strong> Relevé des façades, diagnostic du support, repérage des points singuliers, choix de l’isolant, de l’épaisseur et de la finition.',
+        '<strong>Aides et démarches.</strong> Inscription à l’offre de prime CEE <strong>avant</strong> de signer le devis, puis dépôt de la déclaration préalable en mairie.',
+        '<strong>Installation et préparation.</strong> Montage de l’échafaudage, protection des abords, dépose des descentes d’eau, luminaires et gonds de volets, nettoyage et reprise du support.',
+        '<strong>Pose de l’isolant.</strong> Un rail de départ est fixé en bas de façade, puis les panneaux sont collés et chevillés en quinconce, joints serrés, jusqu’en haut des murs.',
+        '<strong>Points singuliers.</strong> Retours d’isolant dans les tableaux de fenêtres, prolongement ou remplacement des appuis, profilés d’angle et de raccord, couvertines en tête de mur.',
+        '<strong>Enduit et finition.</strong> Enduit de base armé d’un filet en fibre de verre, sous-couche, puis finition dans la teinte choisie.',
+        '<strong>Repose et réception.</strong> Repose des équipements, repli de l’échafaudage, nettoyage, puis réception contradictoire des travaux.'])
+     + '</ol>'
+     + p('Pour une maison individuelle, le chantier dure en général quelques semaines, selon la surface, le nombre de points singuliers et la météo : les enduits ne s’appliquent ni par temps de gel ni sous la pluie.')),
+    ('Quelle épaisseur d’isolant ?',
+     p('Pour ouvrir droit aux primes CEE, l’isolation des murs doit atteindre une résistance thermique R ≥ 3,7 m².K/W. Avec un polystyrène graphité, cela correspond en général à 120 à 140 mm. Nous posons le plus souvent 140 à 200 mm : quelques centimètres de plus améliorent nettement le confort pour un surcoût limité, tant que les appuis et les débords de toiture le permettent.',
+       'Le choix entre polystyrène graphité, laine de roche et fibre de bois change l’épaisseur nécessaire, le confort d’été et l’acoustique : voir notre <a href="/guides/isolant-isolation-exterieure/">comparatif des isolants pour l’ITE</a>.')),
+    ('Les erreurs à éviter',
+     ul('Isoler un mur humide sans avoir traité la cause de l’humidité.',
+        'Signer le devis avant de s’être inscrit à l’offre CEE : la prime est alors perdue.',
+        'Négliger les points singuliers : un appui de fenêtre non prolongé ou un tableau non isolé crée un pont thermique et une entrée d’eau.',
+        'Mélanger les produits de plusieurs fabricants : isolant, colle, enduits et finition doivent appartenir au même système.',
+        'Choisir une teinte très foncée sur isolant : elle chauffe fortement au soleil et fait travailler l’enduit.')),
+    ('Peut-on isoler son mur extérieur soi-même ?',
+     p('C’est techniquement possible, mais l’ITE est un travail de façade en hauteur, sur échafaudage, où chaque détail compte pour l’étanchéité. Surtout, les primes CEE et l’éco-prêt à taux zéro exigent que les travaux soient réalisés par une entreprise qualifiée RGE. Une entreprise apporte aussi la garantie décennale sur l’ouvrage : Cozybat est qualifiée RGE Qualibat et assurée en décennale chez SMABTP.')),
+    ('Budget et aides',
+     p('Chez Cozybat, une isolation par l’extérieur sous enduit coûte 180 à 210 € TTC par m² de mur isolé en Essonne, échafaudage, préparation et finition compris, avant déduction des primes. Les exemples chiffrés sont dans notre guide du ' + LINK_PRIX_ITE + '.',
+       'Depuis le 1er janvier 2026, MaPrimeRénov’ par geste ne finance plus l’isolation des murs ; elle reste possible dans le cadre d’une rénovation d’ampleur avec MaPrimeRénov’ Parcours accompagné. Les primes CEE, la TVA à 5,5 % et l’éco-PTZ restent mobilisables : tout est détaillé dans notre ' + LINK_AIDES + '. Pour un projet précis, faites une ' + LINK_DEVIS + ' : la visite technique est gratuite.')),
+  ],
+  faq=[
+    ('Quelle est la meilleure façon d’isoler un mur extérieur ?', 'Pour une maison enduite, l’isolation par l’extérieur sous enduit est en général la plus efficace : elle supprime les ponts thermiques, ne réduit pas la surface habitable et refait la façade en même temps. L’isolation par l’intérieur reste pertinente pour une façade de caractère à préserver.'),
+    ('Quelle épaisseur d’isolant pour un mur extérieur ?', 'Il faut atteindre au moins R = 3,7 m².K/W pour les primes CEE, soit en général 120 à 140 mm de polystyrène graphité. Chez Cozybat, nous posons le plus souvent 140 à 200 mm selon la maison.'),
+    ('Faut-il une autorisation pour isoler par l’extérieur ?', 'En général oui : l’isolation modifie l’aspect de la façade et demande une déclaration préalable de travaux en mairie. Le PLU peut aussi encadrer les teintes et les débords sur la voie publique.'),
+    ('Combien de temps dure une isolation par l’extérieur ?', 'Pour une maison individuelle, comptez en général quelques semaines de chantier, selon la surface, les points singuliers et la météo. Vous restez dans votre maison pendant toute la durée des travaux.'),
+  ],
+  related=['prix-isolation-exterieure', 'isolant-isolation-exterieure', 'aides-isolation-exterieure'],
 ),
 ]
