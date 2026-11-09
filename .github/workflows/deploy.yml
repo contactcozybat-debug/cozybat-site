@@ -9,7 +9,7 @@ name: Mise en ligne Hostinger
 on:
   push:
     branches: [main]
-    paths: ['public/**']
+    paths: ['public/**', '.github/workflows/deploy.yml']
   workflow_dispatch:
 
 concurrency:
@@ -27,11 +27,11 @@ jobs:
       - name: Contrôle rapide du site
         run: |
           test -f public/index.html
-          ! grep -rl --include=*.html '{{' public/ || (echo "Balises {{ }} trouvées" && exit 1)
+          if grep -rl --include=*.html '{{' public/; then echo 'Balises trouvees'; exit 1; fi
 
       - name: Secrets FTP manquants
         if: env.FTP_PRET != 'true'
-        run: echo "::warning::Secrets FTP non configurés : mise en ligne ignorée."
+        run: echo "::warning::Secrets FTP non configurés, mise en ligne ignorée."
 
       - name: Envoi FTP vers Hostinger
         if: env.FTP_PRET == 'true'
