@@ -109,7 +109,7 @@ dict(
     ('Quelle TVA pour un ravalement de façade ?', 'Une TVA à 10 % s’applique pour un logement achevé depuis plus de deux ans. Si le ravalement est réalisé avec une isolation par l’extérieur, la TVA passe à 5,5 % sous conditions de performance de l’isolant.'),
     ('Tous les combien faut-il ravaler sa façade ?', 'En moyenne tous les 10 à 20 ans selon l’exposition et le revêtement. Certaines communes peuvent imposer un ravalement périodique par arrêté.'),
   ],
-  related=['refaire-crepi-facade', 'fissures-facade', 'prix-isolation-exterieure'],
+  related=['refaire-crepi-facade', 'enduit-gratte-taloche-ribbe', 'prix-isolation-exterieure'],
 ),
 dict(
   slug='aides-isolation-exterieure', kind='ite', short='Aides à l’isolation par l’extérieur',
@@ -309,6 +309,62 @@ dict(
     ('Peut-on refaire un crépi par-dessus l’ancien ?', 'Oui si l’ancien crépi est sain et adhérent : après lavage et traitement des fissures, un enduit armé peut être appliqué par-dessus. Les zones creuses ou qui s’écaillent doivent d’abord être purgées.'),
     ('Quelle différence entre un crépi et un RPE ?', 'Le crépi traditionnel est un enduit minéral (ciment ou chaux). Le RPE est un revêtement plastique épais, organique, appliqué en couche épaisse. Leur rénovation demande des produits compatibles avec chacun.'),
   ],
-  related=['prix-ravalement-facade', 'fissures-facade', 'prix-isolation-exterieure'],
+  related=['prix-ravalement-facade', 'fissures-facade', 'enduit-gratte-taloche-ribbe'],
+),
+]
+
+GUIDES += [
+dict(
+  slug='enduit-gratte-taloche-ribbe', kind='d3', short='Enduit gratté, taloché ou ribbé ?',
+  title='Enduit gratté, taloché ou ribbé : que choisir ? | Cozybat',
+  desc='Enduit de façade gratté, taloché, ribbé ou lisse : aspect, résistance aux salissures, compatibilité avec l’isolation par l’extérieur et conseils de choix.',
+  h1='Enduit gratté, taloché ou ribbé : quelle finition choisir ?',
+  intro='La finition de l’enduit donne à votre façade son aspect pour les quinze ou vingt prochaines années. Gratté, taloché, ribbé ou lisse : voici ce qui distingue chaque finition, comment elle vieillit et laquelle convient à votre maison.',
+  sections=[
+    ('Les finitions d’enduit en un coup d’œil',
+     p('La finition est la dernière couche d’un ravalement ou d’une isolation par l’extérieur. Elle ne change pas la protection du mur, assurée par les couches inférieures, mais elle détermine le relief, la façon dont la lumière accroche la façade et la vitesse à laquelle elle se salit.')
+     + table(['Finition', 'Aspect', 'Tenue aux salissures', 'Pour quelle façade'],
+             [['Gratté', 'Mat, finement rugueux, très régulier', 'Très bonne', 'La plupart des maisons, façades exposées'],
+              ['Taloché', 'Grain régulier, plus ou moins fin selon le grain', 'Bonne en grain fin', 'Maisons contemporaines, ITE'],
+              ['Ribbé', 'Petits sillons qui donnent du relief', 'Moyenne : le relief retient la poussière', 'Façades abritées, effet décoratif'],
+              ['Lisse', 'Uni, sans relief', 'Moyenne : les traces se voient vite', 'Petites surfaces, encadrements, style épuré']])),
+    ('L’enduit gratté',
+     p('C’est l’une des finitions les plus répandues sur les maisons d’Île-de-France. Traditionnellement, l’enduit est appliqué en épaisseur puis, après quelques heures de prise, sa surface est grattée avec une taloche à pointes. Le grattage retire la pellicule superficielle et laisse un aspect mat, finement rugueux et très homogène.')
+     + ul('<strong>Points forts :</strong> il masque bien les petites irrégularités du mur, vieillit de façon régulière et se salit peu, car son relief est fin et sans creux marqués.',
+          '<strong>Limites :</strong> le rendu dépend beaucoup du moment du grattage et de la main de l’applicateur ; une reprise ponctuelle se voit davantage qu’avec un aspect plus marqué.',
+          '<strong>Pour qui :</strong> la plupart des pavillons, notamment ceux exposés à la pluie et à la circulation, quand on cherche une façade sobre qui reste propre longtemps.')),
+    ('L’enduit taloché',
+     p('Pour un enduit taloché, la finition est serrée à la taloche, souvent en mouvements circulaires, jusqu’à obtenir un grain régulier. La taille du grain de l’enduit fixe le rendu : un grain fin donne une surface presque veloutée, un grain plus gros une texture plus visible.')
+     + ul('<strong>Points forts :</strong> rendu net et contemporain, grande régularité sur les grandes surfaces, finition courante des systèmes d’isolation par l’extérieur sous enduit.',
+          '<strong>Limites :</strong> en grain gros, la poussière s’accroche davantage ; les traces de reprise doivent être évitées en travaillant chaque pan de mur d’un seul tenant.',
+          '<strong>Pour qui :</strong> les maisons au style actuel, les extensions, et la plupart des ITE.')),
+    ('L’enduit ribbé, et les autres aspects',
+     p('L’enduit ribbé contient des grains plus gros qui roulent sous la taloche et creusent de petits sillons. Selon le geste, les sillons sont droits, circulaires ou irréguliers. Le relief donne du caractère à la façade et joue avec la lumière rasante.',
+       'Ce relief a un revers : il retient davantage la poussière et la pollution, surtout sur une façade orientée au nord ou sous des arbres. Le ribbé convient bien aux façades abritées ou aux pans de mur qu’on veut distinguer.',
+       'L’<strong>enduit lisse</strong>, lui, est réservé en général aux encadrements de fenêtres, aux bandeaux ou aux petites surfaces : sur une grande façade, il révèle le moindre défaut de planéité et la moindre coulure. D’autres aspects existent (écrasé, projeté, rustique), plus rares aujourd’hui sur les maisons de l’Essonne.')),
+    ('Finition et isolation par l’extérieur',
+     p('Sur une ' + LINK_ITE + ', la finition fait partie d’un système complet défini par le fabricant : isolant, enduit de base armé, sous-couche et finition sont prévus pour fonctionner ensemble. Les finitions possibles sont donc celles du système retenu, en général des enduits de finition de faible épaisseur en aspect taloché, ribbé ou gratté.',
+       'Deux points comptent particulièrement sur un isolant :')
+     + ul('<strong>La teinte.</strong> Une couleur très foncée absorbe la chaleur du soleil et fait travailler l’enduit sur l’isolant. Les fabricants limitent donc les teintes trop sombres ; nous vous indiquons les teintes autorisées pour le système choisi.',
+          '<strong>L’uniformité.</strong> La finition est appliquée par pans entiers, d’un angle à l’autre, pour éviter les traces de reprise visibles sur une façade neuve.')),
+    ('Finition et ravalement D3 armé',
+     p('Pour un ' + LINK_D3 + ', l’enduit armé d’un filet en fibre de verre ponte les fissures du support, puis une finition talochée, grattée ou lisse redonne à la façade un aspect neuf dans la teinte choisie. Si votre façade est déjà en gratté et que vous voulez garder le même aspect, c’est possible ; changer d’aspect l’est aussi.',
+       'Avant de choisir, vérifiez l’état de l’enduit existant : un crépi qui sonne creux ou s’écaille doit être purgé, quelle que soit la finition prévue. Notre guide pour <a href="/guides/refaire-crepi-facade/">refaire le crépi de sa façade</a> détaille ce diagnostic.')),
+    ('Comment bien choisir',
+     ul('<strong>L’exposition.</strong> Façade sur rue, face aux pluies dominantes ou sous des arbres : privilégiez un gratté ou un taloché fin, qui se salissent moins.',
+        '<strong>Le style de la maison.</strong> Le gratté s’accorde avec les pavillons traditionnels, le taloché avec les maisons contemporaines, le ribbé apporte du relief.',
+        '<strong>La cohérence du quartier.</strong> Le PLU de votre commune peut encadrer les teintes et parfois l’aspect des enduits ; en secteur protégé, l’Architecte des Bâtiments de France peut donner son avis.',
+        '<strong>Un échantillon sur place.</strong> Une teinte paraît toujours plus claire sur une grande façade en plein soleil que sur un nuancier : regardez un échantillon sur le mur, à différentes heures.')),
+    ('Prix et démarches',
+     p('Chez Cozybat, la finition est comprise dans nos prix indicatifs en Essonne : 100 à 120 € TTC par m² de façade pour un ravalement D3 armé, 180 à 210 € TTC par m² de mur isolé pour une isolation par l’extérieur. L’aspect et la teinte choisis peuvent faire légèrement varier le coût de la dernière couche ; nous vous le précisons au devis. Les budgets complets sont dans nos guides du ' + LINK_PRIX_RAV + ' et du ' + LINK_PRIX_ITE + '.',
+       'Changer la teinte ou l’aspect d’une façade modifie son aspect extérieur : cela demande en général une déclaration préalable de travaux en mairie. Même un ravalement à l’identique peut y être soumis en secteur protégé ou si la commune l’a décidé. Nous vérifions les règles de votre commune et vous aidons à préparer le dossier. Pour choisir votre finition sur votre propre façade, faites une ' + LINK_DEVIS + ' : la visite technique est gratuite.')),
+  ],
+  faq=[
+    ('Quelle différence entre un enduit gratté et un enduit taloché ?', 'L’enduit gratté est raclé avec une taloche à pointes après un début de prise : il est mat, finement rugueux et très homogène. L’enduit taloché est serré à la taloche jusqu’à obtenir un grain régulier, plus ou moins fin selon le produit.'),
+    ('Quelle finition de façade se salit le moins ?', 'Les finitions au relief fin, comme le gratté ou le taloché à grain fin, retiennent le moins la poussière. Le ribbé et les aspects rustiques, plus creusés, se salissent plus vite, surtout au nord ou sous des arbres.'),
+    ('Peut-on choisir sa finition sur une isolation par l’extérieur ?', 'Oui, parmi les finitions prévues par le système d’isolation retenu, en général taloché, ribbé ou gratté. Les teintes très foncées sont limitées sur isolant, car elles chauffent fortement au soleil.'),
+    ('Faut-il une autorisation pour changer la finition ou la couleur de sa façade ?', 'En général oui : un changement d’aspect ou de teinte relève d’une déclaration préalable de travaux en mairie, et le PLU peut imposer certaines couleurs. Renseignez-vous auprès du service urbanisme de votre commune avant de commander les travaux.'),
+  ],
+  related=['refaire-crepi-facade', 'prix-ravalement-facade', 'prix-isolation-exterieure'],
 ),
 ]
