@@ -5,7 +5,7 @@ from datetime import date
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'site')
 DOMAIN = 'https://cozybat.fr'
-TEL, TEL_H = '+33695441793', '06 95 44 17 93'
+TEL, TEL_H = '+33619425151', '06 19 42 51 51'
 MAIL = 'contact.cozybat@gmail.com'
 IG = 'https://www.instagram.com/cozybat_renovation/'
 GOOGLE = 'https://share.google/EaXcsYWDln5izOgJN'
@@ -261,7 +261,7 @@ def footer(b):
 <ul>
 <li>RGE Qualibat n° E-E213612</li>
 <li>Assurance décennale SMABTP</li>
-<li>5,0/5 sur 44 avis Google</li>
+<li>5,0/5 sur 48 avis Google</li>
 </ul>
 </div>
 </div>
@@ -290,7 +290,7 @@ def ticker():
 
 def trust(b):
     return f'''<section class="trust" aria-label="Pourquoi nous faire confiance"><div class="wrap trust-grid">
-<a class="trust-it" href="{GOOGLE}" rel="noopener"><strong>5,0 <em>★★★★★</em></strong><span>44 avis Google →</span></a>
+<a class="trust-it" href="{GOOGLE}" rel="noopener"><strong>5,0 <em>★★★★★</em></strong><span>48 avis Google →</span></a>
 <div class="trust-it"><strong>RGE</strong><span>Qualibat E-E213612 · ITE</span></div>
 <div class="trust-it"><strong>De père en fils</strong><span>Un métier de famille</span></div>
 <div class="trust-it"><strong>Décennale</strong><span>Assurée chez SMABTP</span></div>
@@ -316,7 +316,7 @@ def avis_section(b):
     cards = ''.join(f'''<figure class="avis"><div class="avis-top"><span class="st" aria-label="5 étoiles sur 5">★★★★★</span><small>{t}</small></div><blockquote>« {e(x)} »</blockquote><figcaption>— {e(n)}</figcaption></figure>''' for n, t, x in AVIS)
     return f'''<section class="sec sec-dark" id="avis"><div class="wrap">
 <div class="sec-head"><div><p class="kicker">Avis clients</p><h2 class="h2">Ils nous ont confié leur façade.</h2></div>
-<a class="score" href="{GOOGLE}" rel="noopener"><strong>5,0 <em>★★★★★</em></strong><span>LES 44 AVIS SUR GOOGLE →</span></a></div>
+<a class="score" href="{GOOGLE}" rel="noopener"><strong>5,0 <em>★★★★★</em></strong><span>LES 48 AVIS SUR GOOGLE →</span></a></div>
 <div class="avis-cols">{cards}</div>
 </div></section>
 '''
@@ -497,7 +497,7 @@ def page_index():
 </div></section>
 '''
     body = (head(b, 'Cozybat · Isolation par l’extérieur et ravalement de façade en Essonne (91)',
-                 'Isolation thermique par l’extérieur et ravalement de façade D3 armé en Essonne. Entreprise RGE Qualibat, décennale SMABTP, 5,0/5 sur 44 avis Google. Visite et devis gratuits.', '')
+                 'Isolation thermique par l’extérieur et ravalement de façade D3 armé en Essonne. Entreprise RGE Qualibat, décennale SMABTP, 5,0/5 sur 48 avis Google. Visite et devis gratuits.', '')
             + header(b) + hero + trust(b) + quiz + specs + real + avis_section(b) + team_section(b) + methode_section()
             + faq_section(FAQ_HOME) + devis_section(b) + footer(b))
     write('index.html', body)

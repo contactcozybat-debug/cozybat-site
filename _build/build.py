@@ -13,7 +13,7 @@ GBY = {g['slug']: g for g in GUIDES}
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.dirname(ROOT)  # racine du dépôt = racine du site (déployée par Hostinger Git)
 DOMAIN = 'https://cozybat.fr'
-TEL, TEL_H = '+33695441793', '06 95 44 17 93'
+TEL, TEL_H = '+33619425151', '06 19 42 51 51'
 MAIL = 'contact.cozybat@gmail.com'
 IG = 'https://www.instagram.com/cozybat_renovation/'
 GOOGLE = 'https://share.google/EaXcsYWDln5izOgJN'
@@ -257,7 +257,7 @@ def footer(stack=False):
 <li><a href="/guides">Tous nos guides</a></li>
 <li>RGE Qualibat n° {RGE}</li>
 <li>Assurance décennale SMABTP</li>
-<li><a href="{GOOGLE}" rel="noopener">5,0/5 sur 44 avis Google</a></li>
+<li><a href="{GOOGLE}" rel="noopener">5,0/5 sur 48 avis Google</a></li>
 </ul>
 </div>
 <div>
@@ -330,7 +330,7 @@ def ticker():
 
 def trust():
     return f'''<section class="trust" aria-label="Nos garanties"><div class="wrap trust-grid">
-<a class="trust-it" href="{GOOGLE}" rel="noopener"><strong>5,0 <em aria-hidden="true">★★★★★</em></strong><span>44 avis Google</span></a>
+<a class="trust-it" href="{GOOGLE}" rel="noopener"><strong>5,0 <em aria-hidden="true">★★★★★</em></strong><span>48 avis Google</span></a>
 <div class="trust-it"><strong>RGE</strong><span>Qualibat {RGE}</span></div>
 <div class="trust-it"><strong>De père en fils</strong><span>Un métier de façade transmis</span></div>
 <div class="trust-it"><strong>Décennale</strong><span>Assurée chez SMABTP</span></div>
@@ -363,7 +363,7 @@ def avis_section():
     cards = ''.join(f'''<figure class="avis"><div class="avis-top"><span class="st" aria-hidden="true">★★★★★</span><small>{t}</small></div><blockquote>« {e(x)} »</blockquote><figcaption>{e(n)} · 5 étoiles sur 5</figcaption></figure>''' for n, t, x in D.AVIS)
     return f'''<section class="sec sec-dark" id="avis"><div class="wrap">
 <div class="sec-head"><div><p class="kicker">Avis clients</p><h2 class="h2">Ils nous ont confié leur façade.</h2></div>
-<a class="score" href="{GOOGLE}" rel="noopener"><strong>5,0 <em aria-hidden="true">★★★★★</em></strong><span>LIRE LES 44 AVIS SUR GOOGLE</span></a></div>
+<a class="score" href="{GOOGLE}" rel="noopener"><strong>5,0 <em aria-hidden="true">★★★★★</em></strong><span>LIRE LES 48 AVIS SUR GOOGLE</span></a></div>
 <div class="avis-cols">{cards}</div>
 </div></section>
 '''
@@ -517,7 +517,7 @@ def page_index():
 </div></section>
 '''
     title = 'Isolation extérieure et ravalement en Essonne (91) | Cozybat'
-    desc = 'Isolation par l’extérieur et ravalement de façade autour de Morangis (91). RGE Qualibat, décennale SMABTP, 5,0/5 sur 44 avis Google. Devis gratuit.'
+    desc = 'Isolation par l’extérieur et ravalement de façade autour de Morangis (91). RGE Qualibat, décennale SMABTP, 5,0/5 sur 48 avis Google. Devis gratuit.'
     body = (head('', title, desc, ld=[ORG_LD, faq_ld(D.FAQ_HOME)], stack=True) + header() + hero + trust() + quiz + specs + real + avis_section() + team_section()
             + guides_home() + methode_section() + faq_section(D.FAQ_HOME) + devis_section() + footer(stack=True))
     write('index.html', body)
@@ -847,7 +847,7 @@ def seo_files():
         [(f'Façade à {c["name"]}', f'/ravalement-isolation-{c["slug"]}/', f'ravalement et isolation par l’extérieur à {c["name"]} ({c["cp"]})') for c in CITIES])
     write('llms.txt', f'''# Cozybat
 
-> Cozybat SAS est une entreprise d’isolation thermique par l’extérieur (ITE) et de ravalement de façade D3 armé, basée à Morangis (91420) et intervenant dans toute l’Essonne. Qualification RGE Qualibat n° {RGE}, assurance décennale SMABTP, 5,0/5 sur 44 avis Google. Société créée en 2025, métier de façade transmis de père en fils.
+> Cozybat SAS est une entreprise d’isolation thermique par l’extérieur (ITE) et de ravalement de façade D3 armé, basée à Morangis (91420) et intervenant dans toute l’Essonne. Qualification RGE Qualibat n° {RGE}, assurance décennale SMABTP, 5,0/5 sur 48 avis Google. Société créée en 2025, métier de façade transmis de père en fils.
 
 Contact : {TEL_H} · {MAIL} · {ADR_TXT}. Visite technique et devis gratuits, réponse sous 48 h ouvrées.
 
