@@ -17,8 +17,8 @@ TEL, TEL_H = '+33695441793', '06 95 44 17 93'
 MAIL = 'contact.cozybat@gmail.com'
 IG = 'https://www.instagram.com/cozybat_renovation/'
 GOOGLE = 'https://share.google/EaXcsYWDln5izOgJN'
-ADR = dict(street='6 rue Évariste Galois', cp='91420', city='Morangis')
-ADR_TXT = '6 rue Évariste Galois, 91420 Morangis'
+ADR = dict(street='6 avenue Évariste Galois', cp='91420', city='Morangis')
+ADR_TXT = '6 avenue Évariste Galois, 91420 Morangis'
 SIRET, SIRET_H = '99311278800019', '993 112 788 00019'
 RGE = 'E-E213612'
 TODAY = date.today().isoformat()
@@ -47,7 +47,7 @@ BYSLUG = {c['slug']: c for c in CHANTIERS}
 # ------------------------------------------------------------------ pages villes (textes propres à chaque commune)
 CITIES = [
   dict(slug='morangis', name='Morangis', cp='91420', own=['ravalement-facade-morangis'], near=['isolation-lucarnes-sainte-genevieve-des-bois', 'isolation-exterieure-saint-michel-sur-orge'],
-       intro=['Cozybat est installée à Morangis : nos locaux du 6 rue Évariste Galois accueillent les rendez-vous clients, et l’équipe intervient chaque semaine sur les maisons de la commune, en isolation par l’extérieur comme en ravalement de façade.',
+       intro=['Cozybat est installée à Morangis : nos locaux du 6 avenue Évariste Galois accueillent les rendez-vous clients, et l’équipe intervient chaque semaine sur les maisons de la commune, en isolation par l’extérieur comme en ravalement de façade.',
               'Être à quelques rues de votre maison, c’est une visite technique organisée rapidement, des réponses le jour même pendant le chantier et un interlocuteur que vous pouvez venir voir. Nous connaissons aussi les démarches à faire auprès de la mairie de Morangis avant de modifier l’aspect d’une façade.'],
        tip_t='Un ravalement D3 armé à Morangis', tip=['Sur la façade de Morangis présentée ci-dessous, l’enduit d’origine était délavé et encrassé. Après lavage et préparation du support, un enduit armé d’un filet en fibre de verre a été appliqué sur toute la surface, puis une finition en deux teintes.',
               'C’est la solution adaptée quand les murs sont sains mais la façade fatiguée : sans isolant, elle traite les microfissures et redonne un aspect neuf pour longtemps.']),
