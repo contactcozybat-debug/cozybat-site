@@ -7,6 +7,10 @@ AddDefaultCharset UTF-8
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
+# 0. Fichiers du dépôt Git jamais servis (sources, historique)
+RewriteRule ^(\.git|\.github|_build)(/|$) - [F,L]
+RewriteRule ^(README\.md|\.gitignore)$ - [F,L]
+
 # 1. HTTPS obligatoire et domaine sans www
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]

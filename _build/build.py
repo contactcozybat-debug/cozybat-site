@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Génère le site Cozybat (pages HTML statiques) dans ../public — version optimisée SEO.
+"""Génère le site Cozybat (pages HTML statiques) à la racine du dépôt — version optimisée SEO.
 Données (couches, chantiers, avis, FAQ) : donnees.py. Lancer : python3 build.py
 """
 import json, os, re, html, time
@@ -11,7 +11,7 @@ import maconnerie
 GBY = {g['slug']: g for g in GUIDES}
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(os.path.dirname(ROOT), 'public')
+OUT = os.path.dirname(ROOT)  # racine du dépôt = racine du site (déployée par Hostinger Git)
 DOMAIN = 'https://cozybat.fr'
 TEL, TEL_H = '+33695441793', '06 95 44 17 93'
 MAIL = 'contact.cozybat@gmail.com'
@@ -24,7 +24,7 @@ RGE = 'E-E213612'
 TODAY = date.today().isoformat()
 MOIS = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'][date.today().month-1] + ' ' + str(date.today().year)
 import hashlib
-VER = hashlib.md5(b''.join(open(os.path.join(ROOT, f), 'rb').read() for f in ('style.css', '../public/assets/js/site.js', '../public/assets/js/stack.js'))).hexdigest()[:10]
+VER = hashlib.md5(b''.join(open(os.path.join(ROOT, f), 'rb').read() for f in ('style.css', '../assets/js/site.js', '../assets/js/stack.js'))).hexdigest()[:10]
 e = html.escape
 
 # ------------------------------------------------------------------ chantiers (noms de fichiers en mots-clés)
@@ -878,6 +878,10 @@ AddDefaultCharset UTF-8
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
+
+# 0. Fichiers du dépôt Git jamais servis (sources, historique)
+RewriteRule ^(\\.git|\\.github|_build)(/|$) - [F,L]
+RewriteRule ^(README\\.md|\\.gitignore)$ - [F,L]
 
 # 1. HTTPS obligatoire et domaine sans www
 RewriteCond %{{HTTPS}} off [OR]

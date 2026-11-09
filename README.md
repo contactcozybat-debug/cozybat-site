@@ -1,13 +1,13 @@
 # Cozybat — site cozybat.fr
 
-- `public/` : le site tel qu'il est en ligne (généré, ne pas modifier à la main).
-- `_build/` : générateur. `cd _build && python3 build.py` régénère `public/`.
+- La racine du dépôt est le site tel qu'il est en ligne (généré, ne pas modifier à la main).
+  Hostinger (hPanel > Git) déploie automatiquement la branche `main` dans `domains/cozybat.fr/public_html`.
+- `_build/` : générateur. `cd _build && python3 build.py` régénère le site à la racine.
   - `build.py` : gabarits des pages, villes, prix, SEO, .htaccess, sitemap.
   - `donnees.py` : couches du système 3D, chantiers, avis, FAQ.
   - `guides.py` : contenu des guides (`/guides/...`).
-  - `style.css` : feuille de style source (minifiée vers `public/assets/css/site.min.css`).
-- `.github/workflows/deploy.yml` : mise en ligne automatique sur Hostinger (FTP) à chaque modification de `public/` sur `main`.
-- `archive-ancien-site/` : ancienne version du site, conservée pour mémoire (non publiée).
+  - `style.css` : feuille de style source (minifiée vers `assets/css/site.min.css`).
+- `_build/`, `.git/`, `README.md` sont bloqués par le `.htaccess` (jamais servis).
 
 Dépendance du générateur : Python 3 et Pillow (`pip install pillow`).
 
