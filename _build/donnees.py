@@ -9,7 +9,7 @@ TEL, TEL_H = '+33619425151', '06 19 42 51 51'
 MAIL = 'contact.cozybat@gmail.com'
 IG = 'https://www.instagram.com/cozybat_renovation/'
 GOOGLE = 'https://share.google/EaXcsYWDln5izOgJN'
-ADR_RDV = '6 avenue Évariste Galois, 91420 Morangis'
+ADR_RDV = '6 avenue Évariste Gallois, 91420 Morangis'
 TODAY = date.today().isoformat()
 import time
 VER = time.strftime('%Y%m%d%H%M')
@@ -194,7 +194,7 @@ ORG_LD = {
   "name": "Cozybat", "legalName": "Cozybat SAS", "url": DOMAIN + "/", "logo": DOMAIN + "/assets/img/logo-cozybat.png",
   "image": DOMAIN + "/assets/img/og-cozybat.jpg", "telephone": TEL, "email": MAIL,
   "description": "Isolation thermique par l’extérieur (ITE) et ravalement de façade D3 armé en Essonne. Entreprise RGE Qualibat.",
-  "address": {"@type": "PostalAddress", "streetAddress": "6 avenue Évariste Galois", "postalCode": "91420", "addressLocality": "Morangis", "addressRegion": "Île-de-France", "addressCountry": "FR"},
+  "address": {"@type": "PostalAddress", "streetAddress": "6 avenue Évariste Gallois", "postalCode": "91420", "addressLocality": "Morangis", "addressRegion": "Île-de-France", "addressCountry": "FR"},
   "areaServed": {"@type": "AdministrativeArea", "name": "Essonne"},
   "sameAs": [IG], "vatID": "FR60993112788",
   "knowsAbout": ["Isolation thermique par l’extérieur", "Ravalement de façade", "Enduit armé D3"]
