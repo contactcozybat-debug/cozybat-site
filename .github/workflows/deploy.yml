@@ -1,0 +1,46 @@
+# Met en ligne le dossier public/ sur Hostinger (FTP) à chaque modification de la branche main.
+# Secrets à créer dans GitHub > Settings > Secrets and variables > Actions :
+#   FTP_SERVER    ex. 185.x.x.x ou ftp.cozybat.fr      (hPanel > Fichiers > Comptes FTP)
+#   FTP_USERNAME  ex. u962292417.cozybat.fr
+#   FTP_PASSWORD  mot de passe du compte FTP
+#   FTP_DIR       dossier du site vu depuis le FTP, terminé par /  (ex. public_html/ ou /)
+name: Mise en ligne Hostinger
+
+on:
+  push:
+    branches: [main]
+    paths: ['public/**']
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      FTP_PRET: ${{ secrets.FTP_SERVER != '' && secrets.FTP_PASSWORD != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Contrôle rapide du site
+        run: |
+          test -f public/index.html
+          ! grep -rl --include=*.html '{{' public/ || (echo "Balises {{ }} trouvées" && exit 1)
+
+      - name: Secrets FTP manquants
+        if: env.FTP_PRET != 'true'
+        run: echo "::warning::Secrets FTP non configurés : mise en ligne ignorée."
+
+      - name: Envoi FTP vers Hostinger
+        if: env.FTP_PRET == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_DIR }}
+          local-dir: ./public/
+          # Ne supprime jamais sur le serveur les fichiers absents du dépôt (outils/, demandes-devis/, admin…)
+          dangerous-clean-slate: false
