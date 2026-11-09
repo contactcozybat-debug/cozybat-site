@@ -19,6 +19,7 @@ RewriteRule ^ https://cozybat.fr%{REQUEST_URI} [L,R=301]
 # 2. Anciennes adresses du site
 RewriteRule ^chantiers\.html$ /nos-realisations/ [R=301,L]
 RewriteRule ^(peinture|nettoyage)-facade(\.html)?/?$ /ravalement-facade/ [R=301,L]
+RewriteRule ^(realisations|chantier|admin)(\.html)?/?$ /nos-realisations/ [R=301,L]
 RewriteRule ^chantiers/ite-ollainville(\.html)?/?$ /chantiers/isolation-exterieure-ollainville/ [R=301,L]
 RewriteRule ^assets/img/chantiers/ite-ollainville-(avant|apres)\.webp$ /assets/img/chantiers/isolation-exterieure-ollainville-$1.webp [R=301,L]
 RewriteRule ^chantiers/ite-saint-michel-sur-orge(\.html)?/?$ /chantiers/isolation-exterieure-saint-michel-sur-orge/ [R=301,L]

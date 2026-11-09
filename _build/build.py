@@ -891,6 +891,7 @@ RewriteRule ^ https://cozybat.fr%{{REQUEST_URI}} [L,R=301]
 # 2. Anciennes adresses du site
 RewriteRule ^chantiers\\.html$ /nos-realisations/ [R=301,L]
 RewriteRule ^(peinture|nettoyage)-facade(\\.html)?/?$ /ravalement-facade/ [R=301,L]
+RewriteRule ^(realisations|chantier|admin)(\\.html)?/?$ /nos-realisations/ [R=301,L]
 {redirects}
 
 # 3. /index.html -> /  et  /page/index.html -> /page/
