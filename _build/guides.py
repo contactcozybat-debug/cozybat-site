@@ -225,7 +225,7 @@ dict(
     ('Peut-on peindre sur une façade fissurée ?', 'Une peinture masque les fissures mais ne les traite pas : elles réapparaissent rapidement. Un revêtement armé D3 ponte les fissures grâce à son filet en fibre de verre.'),
     ('Les fissures liées à la sécheresse sont-elles couvertes par l’assurance ?', 'Elles peuvent l’être si un arrêté de catastrophe naturelle a été publié pour votre commune et la période concernée. Rapprochez-vous de votre assureur habitation.'),
   ],
-  related=['prix-ravalement-facade', 'refaire-crepi-facade', 'prix-isolation-exterieure'],
+  related=['prix-ravalement-facade', 'refaire-crepi-facade', 'appui-fenetre-beton'],
 ),
 ]
 
@@ -309,7 +309,7 @@ dict(
     ('Peut-on refaire un crépi par-dessus l’ancien ?', 'Oui si l’ancien crépi est sain et adhérent : après lavage et traitement des fissures, un enduit armé peut être appliqué par-dessus. Les zones creuses ou qui s’écaillent doivent d’abord être purgées.'),
     ('Quelle différence entre un crépi et un RPE ?', 'Le crépi traditionnel est un enduit minéral (ciment ou chaux). Le RPE est un revêtement plastique épais, organique, appliqué en couche épaisse. Leur rénovation demande des produits compatibles avec chacun.'),
   ],
-  related=['prix-ravalement-facade', 'fissures-facade', 'enduit-gratte-taloche-ribbe'],
+  related=['appui-fenetre-beton', 'fissures-facade', 'enduit-gratte-taloche-ribbe'],
 ),
 ]
 
@@ -366,5 +366,66 @@ dict(
     ('Faut-il une autorisation pour changer la finition ou la couleur de sa façade ?', 'En général oui : un changement d’aspect ou de teinte relève d’une déclaration préalable de travaux en mairie, et le PLU peut imposer certaines couleurs. Renseignez-vous auprès du service urbanisme de votre commune avant de commander les travaux.'),
   ],
   related=['refaire-crepi-facade', 'prix-ravalement-facade', 'prix-isolation-exterieure'],
+),
+]
+
+GUIDES += [
+dict(
+  slug='appui-fenetre-beton', kind='d3', short='Appui de fenêtre en béton',
+  title='Appui de fenêtre béton : réparer ou remplacer ? | Cozybat',
+  desc='Appui de fenêtre en béton fissuré, épaufré ou aux aciers rouillés : comment le réparer, quand le remplacer et que faire en isolation par l’extérieur.',
+  h1='Appui de fenêtre en béton : réparer ou remplacer ?',
+  intro='L’appui de fenêtre reçoit toute l’eau qui ruisselle sur la vitre et la menuiserie. C’est souvent le premier élément d’une façade à se fissurer. Voici comment juger son état, quand une réparation suffit, quand il vaut mieux le remplacer, et ce qui change avec une isolation par l’extérieur.',
+  sections=[
+    ('À quoi sert un appui de fenêtre',
+     p('L’appui, ou rebord extérieur, est la pièce en béton, en pierre ou en métal posée sous la fenêtre. Son rôle est simple : recueillir l’eau de pluie et l’éloigner du mur. Pour cela, un appui en bon état réunit trois détails :')
+     + ul('<strong>une pente vers l’extérieur</strong>, pour que l’eau ne stagne pas contre la menuiserie ;',
+          '<strong>un rejingot</strong>, le petit relief à l’arrière de l’appui contre lequel vient la fenêtre, qui empêche l’eau de passer dessous ;',
+          '<strong>un débord et une goutte d’eau</strong> (ou larmier), la petite rainure sous le nez de l’appui qui fait tomber les gouttes au lieu de les laisser couler sur la façade.')
+     + p('Quand l’un de ces détails manque ou se dégrade, l’eau ruisselle sur l’enduit, s’infiltre sous l’appui et finit par abîmer le mur et parfois l’intérieur de la maison.')),
+    ('Les signes d’un appui abîmé',
+     ul('<strong>Des fissures</strong> sur le dessus ou en travers de l’appui, souvent aux extrémités, là où il est encastré dans le mur.',
+        '<strong>Des épaufrures</strong> : des morceaux de béton qui éclatent, en général sur le nez de l’appui.',
+        '<strong>Des aciers apparents et rouillés</strong> : l’armature a gonflé en s’oxydant et fait éclater le béton qui la couvrait.',
+        '<strong>Des coulures noires</strong> sous chaque fenêtre : la goutte d’eau ne fonctionne plus, ou n’a jamais existé.',
+        '<strong>De l’eau qui stagne</strong> sur l’appui après la pluie : la pente est insuffisante ou inversée.',
+        '<strong>Des traces d’humidité</strong> à l’intérieur, sous la fenêtre ou dans les angles du tableau.')
+     + p('Une fissure fine en surface n’a pas la même gravité qu’un appui fendu sur toute son épaisseur. Si les fissures se prolongent dans le mur, en escalier ou depuis les angles de la fenêtre, le problème peut venir de la structure : notre ' + LINK_FISS + ' vous aide à faire la différence.')),
+    ('Réparer : quand et comment',
+     p('Une réparation suffit quand l’appui est entier, bien fixé, avec une pente correcte, et que les dégâts restent en surface : fissures fines, épaufrures localisées, aciers peu corrodés. Une réparation bien faite suit toujours le même ordre :')
+     + ul('<strong>Purger</strong> le béton abîmé jusqu’au support sain, au marteau et au burin.',
+          '<strong>Dégager et traiter les aciers</strong> : brossage de la rouille, puis produit passivant qui les protège de la corrosion.',
+          '<strong>Reconstituer</strong> l’appui avec un mortier de réparation adapté au béton, en reformant les arêtes.',
+          '<strong>Reprofiler</strong> la pente et recréer la goutte d’eau sous le nez de l’appui.',
+          '<strong>Protéger</strong> avec un revêtement adapté, ou poser une couvertine en aluminium par-dessus pour une protection durable.')
+     + p('La couvertine, ou bavette, est une tôle d’aluminium laquée qui recouvre l’appui existant. Elle évite de casser un appui simplement vieilli, cache les reprises et apporte une goutte d’eau neuve. Elle doit être posée sur un appui sain : on ne recouvre pas un béton qui continue d’éclater.')),
+    ('Remplacer : dans quels cas',
+     p('Le remplacement s’impose quand la réparation ne tiendrait pas :')
+     + ul('l’appui est fendu sur toute son épaisseur, cassé ou descellé ;',
+          'les aciers sont fortement corrodés sur une grande longueur ;',
+          'la pente est inversée et ramène l’eau vers la fenêtre ;',
+          'l’appui est trop court pour la nouvelle épaisseur de façade, par exemple après une isolation par l’extérieur.')
+     + p('Remplacer un appui en béton est un travail délicat : il faut le déposer sans abîmer la menuiserie ni le mur, puis poser un appui neuf (préfabriqué ou coulé en place) avec la bonne pente, un rejingot et une étanchéité soignée sous la fenêtre. Sur certaines fenêtres, la dépose de l’appui oblige à intervenir sur la menuiserie : c’est un point à vérifier lors de la visite.')
+     + table(['Situation', 'Solution habituelle'],
+             [['Fissures fines, appui sain et bien en pente', 'Traitement des fissures et revêtement de protection'],
+              ['Épaufrures, aciers peu rouillés', 'Purge, passivation des aciers, mortier de réparation'],
+              ['Appui vieilli mais solide, coulures sur la façade', 'Réparation puis couvertine en aluminium'],
+              ['Appui fendu, descellé ou pente inversée', 'Remplacement de l’appui'],
+              ['Isolation par l’extérieur prévue', 'Prolongation ou remplacement pour couvrir l’isolant']])),
+    ('Appuis de fenêtre et isolation par l’extérieur',
+     p('Avec une ' + LINK_ITE + ', la façade avance de l’épaisseur de l’isolant et de l’enduit, souvent 15 à 20 cm. Un appui d’origine qui dépassait de quelques centimètres se retrouve alors en retrait : l’eau tomberait directement sur l’enduit neuf. Chaque appui doit donc être traité pour retrouver un débord suffisant au-delà de la nouvelle façade.',
+       'Selon les cas, nous posons un appui rapporté en aluminium par-dessus l’ancien, avec un isolant glissé dessous pour limiter le pont thermique, ou nous remplaçons l’appui. Les jonctions avec l’isolant sont protégées par des profilés et joints prévus par le système d’isolation, pour que l’eau ne s’infiltre pas derrière l’enduit. Ce traitement est chiffré fenêtre par fenêtre sur le devis.')),
+    ('Prix et TVA',
+     p('Les réparations et remplacements d’appuis sont chiffrés <strong>sur devis</strong> chez Cozybat, après visite : le coût dépend du nombre d’appuis, de leur longueur, de leur état et de l’accès. Ils peuvent être réalisés seuls, ou au sein d’un chantier plus large. Lors d’un ' + LINK_D3 + ' (100 à 120 € TTC par m² de façade, prix indicatifs en Essonne), il est logique de remettre les appuis en état avant l’enduit. Lors d’une isolation par l’extérieur (180 à 210 € TTC par m² de mur isolé), leur adaptation fait partie des points singuliers qui expliquent l’écart entre deux devis ; voir notre guide du ' + LINK_PRIX_ITE + '.',
+       'Pour un logement achevé depuis plus de deux ans, des travaux de réparation relèvent en général du taux de TVA de 10 %. Dans le cadre d’une isolation par l’extérieur, les travaux liés à l’isolation peuvent bénéficier du taux de 5,5 % : nous vous indiquons le taux applicable sur le devis. Pour les aides à l’isolation, consultez notre ' + LINK_AIDES + ' ou un conseiller France Rénov’.',
+       'Des reprises ponctuelles d’appuis, de balcons ou d’enduit sont présentées sur notre page <a href="/maconnerie-facade/">maçonnerie de façade</a>. Pour faire chiffrer vos appuis, faites une ' + LINK_DEVIS + '.')),
+  ],
+  faq=[
+    ('Comment réparer un appui de fenêtre en béton fissuré ?', 'On purge le béton abîmé jusqu’au support sain, on traite les aciers apparents contre la rouille, puis on reconstitue l’appui avec un mortier de réparation en reformant la pente et la goutte d’eau. Une couvertine en aluminium peut ensuite le protéger durablement.'),
+    ('Faut-il remplacer un appui de fenêtre dont les aciers sont visibles ?', 'Pas forcément. Si la rouille est localisée et l’appui solide, une réparation avec traitement des aciers suffit. Si les aciers sont corrodés sur une grande longueur ou si l’appui est fendu, le remplacement est plus sûr.'),
+    ('Peut-on poser une couvertine aluminium sur un vieil appui en béton ?', 'Oui, si l’appui est sain et bien fixé. La couvertine recouvre l’appui, apporte une nouvelle goutte d’eau et évite de le casser. Elle ne doit pas cacher un béton qui continue d’éclater, qu’il faut réparer avant.'),
+    ('Que deviennent les appuis de fenêtre lors d’une isolation par l’extérieur ?', 'Ils doivent dépasser la nouvelle façade pour éloigner l’eau de l’enduit. Selon leur état, ils sont prolongés par un appui rapporté en aluminium ou remplacés ; ce traitement est chiffré fenêtre par fenêtre sur le devis.'),
+  ],
+  related=['fissures-facade', 'refaire-crepi-facade', 'prix-isolation-exterieure'],
 ),
 ]
