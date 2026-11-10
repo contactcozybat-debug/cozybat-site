@@ -610,6 +610,21 @@ def page_case(c):
 <div class="hero-cta" style="margin-top:6px"><a class="btn btn-gold" href="/devis?projet={c['type']}" data-track="Clic devis">Demander un devis pour un projet similaire</a><a class="btn btn-outline" href="{sysp[0]}">{sysp[1]}</a>{city_link}</div>
 </div></div></div></section>
 '''
+    for sfx, nom, cap in c.get('extra', []):
+        b2 = f'{base}-{sfx}'
+        w2, h2 = img_size(b2 + '-avant.webp')
+        content += f'''<section class="sec" style="padding-top:0"><div class="wrap"><h2 class="kicker">{e(nom)}</h2>
+<figure class="ba-card" style="max-width:640px">
+<div class="ba">
+<img src="{b2}-avant.webp"{srcset(base, sfx + '-avant', w2).replace('440px', '640px')} alt="{e(c['work'])} à {e(c['ville'])} : {e(nom.lower())} avant les travaux" width="{w2}" height="{h2}" loading="lazy" decoding="async">
+<img class="after" src="{b2}-apres.webp"{srcset(base, sfx + '-apres', w2).replace('440px', '640px')} alt="{e(c['work'])} à {e(c['ville'])} : {e(nom.lower())} après les travaux Cozybat" width="{w2}" height="{h2}" loading="lazy" decoding="async">
+<span class="bar" aria-hidden="true"></span><span class="knob" aria-hidden="true">↔</span>
+<span class="tag l" aria-hidden="true">AVANT</span><span class="tag r" aria-hidden="true">APRÈS</span>
+<input type="range" min="0" max="100" value="50" aria-label="Comparer avant et après, {e(nom.lower())} à {e(c['ville'])}">
+</div>
+<figcaption class="ba-cap"><p>{e(cap)}</p></figcaption>
+</figure></div></section>
+'''
     if more:
         content += f'<section class="sec sec-warm"><div class="wrap"><h2 class="kicker">Autres réalisations du même type</h2><div class="ba-grid">{more}</div></div></section>\n'
     title = c['title'] + ' | Cozybat'
