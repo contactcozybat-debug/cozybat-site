@@ -67,7 +67,7 @@ dict(
     ('Pourquoi deux devis d’ITE peuvent-ils être très différents ?', 'Parce que l’isolant, son épaisseur et surtout le traitement des points singuliers (appuis, volets, descentes) changent beaucoup d’un devis à l’autre. Un devis bas peut omettre ces postes ou prévoir un isolant moins épais.'),
     ('Peut-on payer moins cher grâce aux aides ?', 'Oui : les primes CEE se déduisent du prix, la TVA est à 5,5 % et l’éco-prêt à taux zéro permet d’étaler le financement. Depuis 2026, MaPrimeRénov’ ne finance plus l’isolation des murs seule, sauf dans le cadre d’une rénovation d’ampleur.'),
   ],
-  related=['aides-isolation-exterieure', 'isolant-isolation-exterieure', 'isolation-interieure-ou-exterieure'],
+  related=['aides-isolation-exterieure', 'isolant-isolation-exterieure', 'epaisseur-isolation-exterieure'],
 ),
 dict(
   slug='prix-ravalement-facade', kind='d3', short='Prix d’un ravalement de façade',
@@ -153,7 +153,7 @@ dict(
     ('Quand faut-il demander la prime CEE ?', 'Avant de signer le devis. La prime n’est versée que si l’inscription à l’offre CEE précède l’engagement des travaux.'),
     ('Faut-il une entreprise RGE ?', 'Oui pour les primes CEE, l’éco-PTZ et MaPrimeRénov’. Cozybat est qualifiée RGE Qualibat n° E-E213612.'),
   ],
-  related=['prix-isolation-exterieure', 'isolant-isolation-exterieure', 'isolation-interieure-ou-exterieure'],
+  related=['prix-isolation-exterieure', 'isolant-isolation-exterieure', 'epaisseur-isolation-exterieure'],
 ),
 dict(
   slug='isolation-interieure-ou-exterieure', kind='ite', short='Isolation intérieure ou extérieure ?',
@@ -427,5 +427,54 @@ dict(
     ('Que deviennent les appuis de fenêtre lors d’une isolation par l’extérieur ?', 'Ils doivent dépasser la nouvelle façade pour éloigner l’eau de l’enduit. Selon leur état, ils sont prolongés par un appui rapporté en aluminium ou remplacés ; ce traitement est chiffré fenêtre par fenêtre sur le devis.'),
   ],
   related=['fissures-facade', 'refaire-crepi-facade', 'prix-isolation-exterieure'],
+),
+]
+
+GUIDES += [
+dict(
+  slug='epaisseur-isolation-exterieure', kind='ite', short='Quelle épaisseur pour une ITE ?',
+  title='Épaisseur isolation extérieure : combien de cm ? | Cozybat',
+  desc='Quelle épaisseur d’isolant pour une isolation par l’extérieur ? Résistance thermique exigée, épaisseur par isolant, limites de la maison et conseils.',
+  h1='Quelle épaisseur pour une isolation par l’extérieur ?',
+  intro='12, 14, 16 ou 20 cm : l’épaisseur de l’isolant est l’une des premières questions d’un projet d’isolation par l’extérieur. Elle se déduit de la performance visée, de l’isolant choisi et de ce que la maison permet. Voici comment la choisir.',
+  sections=[
+    ('On ne choisit pas une épaisseur, mais une résistance thermique',
+     p('La performance d’un isolant se mesure par sa <strong>résistance thermique R</strong>, en m².K/W : plus elle est élevée, moins la chaleur traverse le mur. Elle dépend de deux choses, l’épaisseur et la conductivité thermique du matériau, notée λ (lambda) : <strong>R = épaisseur (en mètres) ÷ λ</strong>.',
+       'Deux isolants de même épaisseur n’isolent donc pas autant. Avec un polystyrène graphité de λ = 0,031 W/m.K, 140 mm donnent R ≈ 4,5 ; avec un isolant de λ = 0,040, la même épaisseur ne donne que R = 3,5. C’est pourquoi un devis sérieux indique toujours la résistance thermique R, et pas seulement l’épaisseur.')),
+    ('Les seuils à connaître',
+     table(['Repère', 'Résistance thermique', 'Ce que cela signifie'],
+           [['Minimum réglementaire en rénovation', 'R ≥ 3,2 m².K/W (paroi + isolant)', 'Exigé en Essonne (zone H1) quand on isole un mur extérieur'],
+            ['Primes CEE', 'R ≥ 3,7 m².K/W (isolant seul)', 'Condition pour les primes, avec une entreprise RGE'],
+            ['Confort renforcé', 'R ≈ 4,5 à 6,5 m².K/W', 'Ce que nous posons le plus souvent : 140 à 200 mm de PSE graphité']])
+     + p('Le minimum réglementaire vient de la réglementation thermique des bâtiments existants (arrêté du 3 mai 2007 modifié) : depuis le 1er janvier 2023, un mur extérieur isolé en zone H1 doit atteindre au moins R = 3,2 m².K/W, isolant et mur compris. Le seuil des primes CEE est plus exigeant : R ≥ 3,7 m².K/W pour le seul isolant posé, l’isolation déjà en place n’étant pas comptée. En pratique, c’est ce seuil de 3,7 qui fixe l’épaisseur minimale d’un projet.')),
+    ('Quelle épaisseur selon l’isolant',
+     table(['Isolant', 'λ indicatif (W/m.K)', 'Épaisseur pour R ≥ 3,7', 'R obtenu avec 160 mm'],
+           [['Polystyrène graphité (PSE gris)', '0,031 à 0,032', '120 mm', 'Environ 5,0'],
+            ['Laine de roche', '0,035 à 0,036', '140 mm', 'Environ 4,5'],
+            ['Fibre de bois', '0,040 à 0,043', '150 à 160 mm', 'Environ 3,8']])
+     + p('Ces valeurs sont des ordres de grandeur : la résistance exacte figure sur la fiche technique et l’étiquette de chaque produit certifié, et c’est elle qui compte pour les aides. Les isolants sont vendus par paliers d’épaisseur (120, 140, 160 mm…), on arrondit donc toujours au palier supérieur. Pour comparer les isolants sur le confort d’été, l’acoustique ou le feu, voir notre <a href="/guides/isolant-isolation-exterieure/">comparatif des isolants pour l’ITE</a>.')),
+    ('Pourquoi aller au-delà du minimum',
+     p('Entre 120 et 160 mm de polystyrène graphité, le surcoût porte surtout sur l’isolant lui-même : l’échafaudage, la préparation, l’enduit et la finition coûtent pratiquement la même chose. Or une isolation se fait pour plusieurs décennies, et on ne la recommence pas pour ajouter 4 cm.',
+       'Le gain diminue toutefois à mesure qu’on épaissit : passer de 0 à 120 mm divise les pertes du mur de manière spectaculaire, passer de 160 à 200 mm apporte un gain réel mais plus modeste. Pour la plupart des pavillons de l’Essonne, <strong>140 à 160 mm</strong> représentent un bon équilibre ; 200 mm se justifient quand la maison s’y prête et dans un projet de rénovation complète.')),
+    ('Ce qui limite l’épaisseur sur une maison',
+     p('L’épaisseur idéale sur le papier n’est pas toujours possible sur le mur. Lors de la visite, nous vérifions :')
+     + ul('<strong>Le débord de toiture.</strong> L’isolant doit rester abrité par la toiture ou être protégé en tête par une couvertine ; un débord court limite l’épaisseur ou impose un habillage.',
+          '<strong>Les appuis de fenêtre.</strong> Plus l’isolant est épais, plus les appuis doivent être prolongés ou remplacés ; voir notre guide sur l’<a href="/guides/appui-fenetre-beton/">appui de fenêtre en béton</a>.',
+          '<strong>Les tableaux de fenêtres et de portes.</strong> On y pose un retour d’isolant plus mince, pour ne pas réduire le clair des ouvertures ni gêner les volets.',
+          '<strong>Les volets battants et les équipements.</strong> Gonds, arrêts de volets, coffres, descentes d’eau, compteurs et luminaires doivent être déportés de l’épaisseur ajoutée.',
+          '<strong>Les limites de propriété et la voie publique.</strong> Un mur en limite ou un trottoir étroit peut réduire l’épaisseur possible ; ce point se règle avec le voisin ou la mairie avant les travaux.')
+     + p('Ce sont ces points singuliers, plus que l’isolant, qui font varier le prix d’un chantier. Ils sont détaillés dans notre guide du ' + LINK_PRIX_ITE + '.')),
+    ('Épaisseur, prix et aides',
+     p('Chez Cozybat, une ' + LINK_ITE + ' sous enduit coûte 180 à 210 € TTC par m² de mur isolé (prix indicatifs en Essonne), avec un polystyrène graphité de 140 à 200 mm, échafaudage, préparation, enduit armé et finition compris. L’épaisseur choisie se situe dans cette fourchette ; nous vous chiffrons au besoin deux options pour comparer.',
+       'Pour les aides, l’important est d’atteindre R ≥ 3,7 m².K/W avec un isolant certifié : c’est la condition de la TVA à 5,5 % et, avec une entreprise RGE, des primes CEE ; l’éco-prêt à taux zéro reste mobilisable. Depuis le 1er janvier 2026, MaPrimeRénov’ par geste ne finance plus l’isolation des murs ; elle n’est possible que dans une rénovation d’ampleur (Parcours accompagné). Le détail est dans notre ' + LINK_AIDES + ', et un conseiller France Rénov’ peut faire le point sur votre situation.',
+       'Pour connaître l’épaisseur possible sur votre maison, faites une ' + LINK_DEVIS + ' : la visite technique est gratuite. Cozybat est qualifiée RGE Qualibat et assurée en décennale chez SMABTP.')),
+  ],
+  faq=[
+    ('Quelle épaisseur minimale pour une isolation par l’extérieur ?', 'Pour les primes CEE, l’isolant doit atteindre R ≥ 3,7 m².K/W, soit en général 120 mm de polystyrène graphité, 140 mm de laine de roche ou 150 à 160 mm de fibre de bois. La réglementation impose au minimum R = 3,2 m².K/W pour le mur isolé en Essonne.'),
+    ('14 ou 16 cm d’isolant : lequel choisir ?', 'Les deux dépassent le seuil des aides avec un polystyrène graphité. Le passage à 16 cm améliore encore l’isolation pour un surcoût limité, à condition que les débords de toiture et les appuis de fenêtre le permettent.'),
+    ('Une isolation de 20 cm vaut-elle le coup ?', 'Elle apporte un gain réel mais plus modeste que les premiers centimètres. Elle se justifie dans une rénovation complète ou quand la maison s’y prête sans travaux d’adaptation importants sur la toiture et les ouvertures.'),
+    ('De combien la façade avance-t-elle après une ITE ?', 'De l’épaisseur de l’isolant plus celle de l’enduit, soit souvent 15 à 20 cm. C’est pourquoi les appuis, les volets, les descentes d’eau et les murs en limite de propriété sont étudiés dès la visite.'),
+  ],
+  related=['isolant-isolation-exterieure', 'prix-isolation-exterieure', 'aides-isolation-exterieure'],
 ),
 ]
